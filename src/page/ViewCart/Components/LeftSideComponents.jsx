@@ -441,7 +441,7 @@ const LeftSideComponents = ({ setTotalPrice }) => {
                               fontSize: { xs: "10px", md: "12px" },
                               fontWeight: 500,
 
-                              wordBreak: "break-all",
+                              // wordBreak: "break-all",
                               color: "grey",
                               wordBreak: "break-word",
                               overflowWrap: "break-word",
