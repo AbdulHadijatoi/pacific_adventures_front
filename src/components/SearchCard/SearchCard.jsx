@@ -18,7 +18,7 @@ import { addToWishList, deleteWishList, getWishList } from "../../store/actions/
 import Loader from "../Loader/Loader";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router";
-import WishListSkeletion from "../../page/Wish_List/wishListSkeletion";
+import WishListSkeletion from "../../page/Wish_List/WishListSkeletion";
 
 const SearchCard = () => {
   const theme = useTheme();
