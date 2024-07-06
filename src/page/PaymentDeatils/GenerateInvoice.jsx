@@ -235,16 +235,16 @@ const GenerateInvoice = () => {
                     }}
                   >
                     <Box
-                      sx={{ padding: "20px", color: "black", width: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}
+                      sx={{ padding: "20px", color: "black", minWidth: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}
                     >
                       <Typography>{cooks?.first_name}</Typography>
                       <Typography></Typography>
                     </Box>
-                    <Box sx={{ padding: "20px", color: "black", width: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
+                    <Box sx={{ padding: "20px", color: "black", minWidth: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
                       <Typography>{cooks?.nationality}</Typography>
                       <Typography></Typography>
                     </Box>
-                    <Box sx={{ padding: "20px", color: "black", width: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
+                    <Box sx={{ padding: "20px", color: "black", minWidth: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
                       <Typography></Typography>
                       <Box>
 
@@ -252,7 +252,7 @@ const GenerateInvoice = () => {
                         <Typography sx={{ textAlign: 'center' }}>{number}</Typography>
                       </Box>
                     </Box>
-                    <Box sx={{ padding: "20px", color: "black", width: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
+                    <Box sx={{ padding: "20px", color: "black", minWidth: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
                       <Typography>Document Date</Typography>
                       <Typography><span style={{ color: 'gray' }} ref={dateRef}></span></Typography>
                     </Box>
@@ -414,16 +414,16 @@ const GenerateInvoice = () => {
                     }}
                   >
                     <Box
-                      sx={{ padding: "20px", color: "black", width: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}
+                      sx={{ padding: "20px", color: "black", minWidth: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}
                     >
                       <Typography>{cooks?.first_name}</Typography>
                       <Typography></Typography>
                     </Box>
-                    <Box sx={{ padding: "20px", color: "black", width: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
+                    <Box sx={{ padding: "20px", color: "black", minWidth: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
                       <Typography>{cooks?.nationality}</Typography>
                       <Typography></Typography>
                     </Box>
-                    <Box sx={{ padding: "20px", color: "black", width: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
+                    <Box sx={{ padding: "20px", color: "black", minWidth: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
                       <Typography></Typography>
                       <Box>
 
@@ -431,7 +431,7 @@ const GenerateInvoice = () => {
                         <Typography sx={{ textAlign: 'center' }}>{number}</Typography>
                       </Box>
                     </Box>
-                    <Box sx={{ padding: "20px", color: "black", width: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
+                    <Box sx={{ padding: "20px", color: "black", minWidth: "200px", display: 'flex', justifyContent: 'space-between', width: '95%' }}>
                       <Typography>Document Date</Typography>
                       <Typography><span style={{ color: 'gray' }} ref={dateRef}></span></Typography>
                     </Box>

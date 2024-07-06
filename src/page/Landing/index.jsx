@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Header from "./Header";
-import ChooseUs from "./Chooseus";
+import ChooseUs from "./ChooseUs";
 import Popular from "./Popular";
 import Footer from "../Component/Footer";
 import Navbar from "../Component/Navbar";
