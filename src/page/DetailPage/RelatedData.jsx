@@ -9,7 +9,7 @@ const RelatedData = ({ onItemClick }) => {
   const theme = useTheme();
   const [value, setValue] = useState(5);
   const [loading, setLoading] = useState(false);
-  const base = "https://www.admin.bookdubaisafari.com/";
+  const base = "https://admin.pacific-adventures.com/";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const popularActivities = useSelector(
@@ -110,7 +110,7 @@ const RelatedData = ({ onItemClick }) => {
                 >
                   <Box sx={{ position: "relative" }}>
                     <img
-                      src={`https://www.admin.bookdubaisafari.com/storage/uploads/media/${val.image}`}
+                      src={`https://admin.pacific-adventures.com/storage/uploads/media/${val.image}`}
                       alt="Header"
                       style={{
                         width: "100%",

@@ -95,7 +95,7 @@ const CustomCard = () => {
             >
               <Box sx={{ position: "relative" }}>
                 <img
-                  src={`https://www.admin.bookdubaisafari.com/storage/uploads/media/${val.image}`}
+                  src={`https://admin.pacific-adventures.com/storage/uploads/media/${val.image}`}
                   alt="Header"
                   style={{
                     width: "100%",

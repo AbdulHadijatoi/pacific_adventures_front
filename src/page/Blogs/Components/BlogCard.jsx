@@ -8,7 +8,7 @@ import { BASE_URL } from '../../../utils/baseURL';
 import { useNavigate } from 'react-router';
 
 const BlogCard = () => {
-    const base = 'https://www.admin.bookdubaisafari.com/';
+    const base = 'https://admin.pacific-adventures.com/';
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [blog, setBlog] = useState([]);

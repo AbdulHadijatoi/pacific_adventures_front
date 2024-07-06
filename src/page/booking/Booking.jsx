@@ -21,7 +21,7 @@ import { BookingUpdate, OrderCancel, getAllBooking } from "../../store/actions/b
 import Page from "../../components/page";
 
 const Booking = ({nameProp}) => {
-  const base = 'https://www.admin.bookdubaisafari.com/';
+  const base = 'https://admin.pacific-adventures.com/';
   const [bookings, setBooking] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);

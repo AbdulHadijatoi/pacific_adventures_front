@@ -58,7 +58,7 @@ const GiftDetail = ({ ac_data }) => {
     backgroundColor: '#f6f7f9',
   };
 
-  const base = 'https://www.admin.bookdubaisafari.com/';
+  const base = 'https://admin.pacific-adventures.com/';
   const descriptionPreview = ac_data?.description?.split(' ').slice(0, 30).join(' ');
   const handleDiscountClick = (value) => {
     setDiscountPrice(value);

@@ -31,7 +31,7 @@ const LeftSideComponents = ({ setTotalPrice }) => {
     setIsExpanded(!isExpanded);
   };
 
-  const base = "https://www.admin.bookdubaisafari.com/";
+  const base = "https://admin.pacific-adventures.com/";
   const navigate = useNavigate();
   const theme = useTheme();
   const dispatch = useDispatch();

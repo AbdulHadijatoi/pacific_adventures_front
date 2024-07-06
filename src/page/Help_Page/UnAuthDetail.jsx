@@ -8,7 +8,7 @@ const UnAuthDetail = () => {
 
     const packageData = state?.allData;
 
-    const base = 'https://www.admin.bookdubaisafari.com/';
+    const base = 'https://admin.pacific-adventures.com/';
     console.log(packageData, 'stateay');
 
     return (

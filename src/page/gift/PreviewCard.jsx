@@ -10,7 +10,7 @@ const PreviewCard = () => {
     setIsExpanded(!isExpanded);
   };
   const { discountPrice, recipientEmail, description, acData } = location.state;
-  const base = 'https://www.admin.bookdubaisafari.com/';
+  const base = 'https://admin.pacific-adventures.com/';
 
   useEffect(() => {
     window.scrollTo(0, 0)

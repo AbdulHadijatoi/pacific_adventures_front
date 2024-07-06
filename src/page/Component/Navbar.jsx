@@ -34,7 +34,7 @@ import { logout } from "../../store/actions/authActions";
 
 const Navbar = () => {
   const theme = useTheme();
-  const base = 'https://www.admin.bookdubaisafari.com/'
+  const base = 'https://admin.pacific-adventures.com/'
 
 
   const user = useSelector((state) => state?.auth?.user);
