@@ -28,7 +28,7 @@ const ChooseUs = () => {
                             <Grid key={ind} item lg={3} xs={12} sm={12} md={4}>
                                 <Box sx={{ display: "flex", flexDirection: 'column', gap: '10px', alignItems: 'center' }}>
                                     <val.icon size={20} style={{ color: 'white', backgroundColor: theme.palette.primary.main, padding: '10px', borderRadius: '10px' }} />
-                                    <Typography sx={{ fontSize: '18px', fontWeight: 700, textAlign: 'center', fontSize:'14px' }}>{val.title}</Typography>
+                                    <Typography sx={{ fontWeight: 700, textAlign: 'center', fontSize:'14px' }}>{val.title}</Typography>
                                     <Typography sx={{ color: theme.palette.text.secondary, textAlign: 'center', fontSize:'12px' }}>{val.description}</Typography>
                                 </Box>
                             </Grid>
