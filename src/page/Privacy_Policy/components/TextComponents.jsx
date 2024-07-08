@@ -18,7 +18,7 @@ export const Paragraph = ({ children, ...props }) => {
 export const CH_Box_Text = ({ text, ...props }) => {
   return (
     <Box sx={{ display: "flex", mt: 2, alignItems: "center" }} {...props}>
-      <img src="/icons/Vector.png" height={'15px'} width={'15px'}/>
+      <img src="/icons/tickmark.svg" height={'15px'} width={'15px'}/>
       <Typography fontWeight="bold" sx={{ ml: 1.5 }} fontSize={'12px'}>
         {text}
       </Typography>

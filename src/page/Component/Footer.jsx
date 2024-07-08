@@ -133,7 +133,7 @@ const currentYear = new Date().getFullYear();
                     ),
                     sx: {
                       "& input::placeholder": {
-                        color: "red",
+                        color: "#832d14",
                       },
                       padding: 0, // Ensure no padding for the input
                     },
