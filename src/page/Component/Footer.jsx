@@ -304,8 +304,8 @@ const currentYear = new Date().getFullYear();
 
                 <Box>
                   <Typography sx={{ fontSize: '12px', color: 'grey' }}>
-                    <a href="tel:+971503773786" style={{ textDecoration: 'none', color: 'inherit' }}>
-                      +971 50 377 3786
+                    <a href="tel:+971588627171" style={{ textDecoration: 'none', color: 'inherit' }}>
+                      +971 58 862 7171
                     </a>
                   </Typography>
                 </Box>
@@ -316,8 +316,8 @@ const currentYear = new Date().getFullYear();
                 <FaWhatsapp style={{ color: 'grey', fontSize: '20px' }} />
                 <Box>
                   <Typography sx={{ fontSize: '12px', color: 'grey' }}>
-                    <a href="https://wa.me/971503773786" target="_blank" style={{ textDecoration: 'none', color: 'inherit' }}>
-                      +971 50 377 3786
+                    <a href="https://wa.me/971588627171" target="_blank" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    +971 58 862 7171
                     </a>
                   </Typography>
                 </Box>
