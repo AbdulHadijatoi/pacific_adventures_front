@@ -101,11 +101,11 @@ P.O. Box 232268 Dubai, United Arab Emirates
 
 <Typography sx={{fontSize:'0.9rem', textAlign:'center', color:'grey'}}>
 What's app or Call:
-{/* <Link href="tell:+971503773786">
-+971 50 377 3786,
+{/* <Link href="tell:+971588627171">
++971 58 862 7171,
         </Link> */}
 
-        <a href="tel:+971503773786" style={{textDecoration:'none', color:'grey'}}> {" "}+971 50 377 3786</a>
+        <a href="tel:+971588627171" style={{textDecoration:'none', color:'grey'}}> {" "}+971 58 862 7171</a>
 
 <br/>
  24/7 Chat available on site.

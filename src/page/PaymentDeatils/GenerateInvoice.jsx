@@ -369,7 +369,7 @@ const GenerateInvoice = () => {
                       <Grid item lg={3.6} md={3.6} sm={12} xs={12}>
                         <Box>
                           <br />
-                          <Typography sx={{ fontSize: '0.8rem' }}>Phone: +971 50 377 3786</Typography>
+                          <Typography sx={{ fontSize: '0.8rem' }}>Phone: +971 58 862 7171</Typography>
                           <Typography sx={{ fontSize: '0.8rem' }}>bookings@pacific-adventures </Typography>
                           <Typography sx={{ fontSize: '0.8rem' }}>www.pacific-adventures.com</Typography>
                         </Box>
@@ -509,7 +509,7 @@ const GenerateInvoice = () => {
                       <Grid item lg={3.6} md={3.6} sm={12} xs={12}>
                         <Box>
                           <br />
-                          <Typography sx={{ fontSize: '0.8rem' }}>Phone: +971 50 377 3786</Typography>
+                          <Typography sx={{ fontSize: '0.8rem' }}>Phone: +971 58 862 7171</Typography>
                           <Typography sx={{ fontSize: '0.8rem' }}>bookings@pacific-adventures </Typography>
                           <Typography sx={{ fontSize: '0.8rem' }}>www.pacific-adventures.com</Typography>
                         </Box>
