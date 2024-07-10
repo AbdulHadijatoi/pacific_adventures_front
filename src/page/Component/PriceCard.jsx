@@ -90,23 +90,9 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
   console.log(cartData, 'allllllllllllll ayyyyyyyyyyyyy')
 
   return (
-    <Box
-      sx={{
-        padding: "1.2rem 5%",
-        border: "1px solid #f0f0f0",
-        borderRadius: "10px",
-        background: "#fff",
-      }}
-    >
-      <Typography
-        variant="h1"
-        sx={{ fontSize: "1.1rem", fontWeight: "600", marginBottom: "1rem" }}
-      >
-        Summary
-      </Typography>
-      <Divider />
+    
 
-      <Box sx={{ marginTop: "1.2rem" }}>
+      <Box sx={{ borderRadius: "10px", display: "flex", justifyContent: "center", flexDirection: "column" }}>
         {state?.path === "cart" ? (
           <>
             {cartData?.map((item, index) => (
@@ -117,10 +103,9 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
                   justifyContent: "space-between",
                   alignItems: "center",
                   marginTop: "0rem",
-                  // border: "1px solid #f0f0f0",
-                  padding: "10px",
+
                   borderRadius: "5px",
-                  width: "90%",
+                  width: "100%",
                 }}
               >
 
@@ -130,11 +115,10 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
 
                   }}
                   key={index}
-                  expanded={expanded === `panel${index}`}
+                  expanded="true"
                   onChange={handleChange(`panel${index}`)}
                 >
                   <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
                     aria-controls={`panel${index}bh-content`}
                     id={`panel${index}bh-header`}
                     minWidth='100%'
@@ -146,6 +130,7 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
 
                     </Typography>
                   </AccordionSummary>
+                  <Divider />
                   <AccordionDetails>
                     <Box
                       sx={{
@@ -504,7 +489,7 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
           </>
         )}
       </Box>
-    </Box>
+
   );
 };
 

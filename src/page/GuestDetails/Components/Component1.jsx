@@ -5,9 +5,14 @@ import {
   Grid,
   MenuItem,
   Select,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  Checkbox,
   TextField,
   Typography,
   useTheme,
+  TextareaAutosize,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
@@ -16,17 +21,19 @@ import { useDispatch, useSelector } from "react-redux";
 import Cookies from 'js-cookie';
 import { Booking } from '../../../store/actions/categoriesActions';
 import PriceCard from "../../Component/PriceCard";
+import cardIcon from '/card.svg';
 
 const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
-  console.log(data, 'hh')
   const theme = useTheme();
   const [payNow, setPayNow] = useState(false);
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const { state } = useLocation();
-
+  const [isChecked, setIsChecked] = useState(false);
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
   const userData = useSelector((state) => state?.auth?.user);
-
 
   const [formValues, setFormValues] = useState({
     title: "Mr",
@@ -84,16 +91,14 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [dete, setDete] = useState(null)
-  console.log(dete, 'date')
+  const [dete, setDete] = useState(null);
+
   useEffect(() => {
-    // window.scrollTo(0, 0);
     const data = localStorage.getItem('bookingDetails');
     if (data) {
       setDete(JSON.parse(data));
     }
   }, []);
-
 
   const handleProceedToPayment = () => {
     if (!validate()) return;
@@ -123,15 +128,10 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
       };
     }
 
-    console.log('bookingDetails:', bookingDetails);
-
-    // Use localStorage to store bookingDetails if the data is too large for cookies
     localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
 
     onNext();
   };
-
-
 
   const textFieldStyle = {
     marginTop: "1rem",
@@ -151,6 +151,16 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
     backgroundColor: "#f1f1f1",
   };
 
+  const textareaStyle = {
+    marginTop: "1rem",
+    padding: "8px",
+    borderRadius: "5px",
+    backgroundColor: "#f1f1f1",
+    border: "none",
+    fontFamily: "inherit",
+    fontSize: "inherit",
+  };
+
   return (
     <>
       <Grid container spacing={3}>
@@ -158,7 +168,7 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
           <Box
             sx={{
               border: "1px solid #f0f0f0",
-              padding: "1.5rem 5%",
+              padding: "4%",
               borderRadius: "10px",
               background: "#fff",
             }}
@@ -170,13 +180,10 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
               >
                 Lead Passenger Details
               </Typography>
-              {/* <Typography sx={{ fontSize: "0.9rem", color: "grey" }}>
-                Please Enter Your Passenger Details
-              </Typography> */}
             </Box>
 
             <Grid container spacing={2} sx={{ marginTop: "0rem" }}>
-              <Grid item lg={6} md={12} sm={12} xs={12}>
+              <Grid item lg={2} md={12} sm={12} xs={12}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <label>Title</label>
                   <FormControl fullWidth>
@@ -193,7 +200,7 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
                   </FormControl>
                 </Box>
               </Grid>
-              <Grid item lg={6} md={12} sm={12} xs={12}>
+              <Grid item lg={5} md={12} sm={12} xs={12}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <label style={{ fontSize: "1rem" }}>First Name</label>
                   <TextField
@@ -207,7 +214,7 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
                   />
                 </Box>
               </Grid>
-              <Grid item lg={6} md={12} sm={12} xs={12}>
+              <Grid item lg={5} md={12} sm={12} xs={12}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <label style={{ fontSize: "1rem" }}>Last Name</label>
                   <TextField
@@ -221,7 +228,7 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
                   />
                 </Box>
               </Grid>
-              <Grid item lg={6} md={12} sm={12} xs={12}>
+              <Grid item lg={4} md={12} sm={12} xs={12}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <label style={{ fontSize: "1rem" }}>Email Address</label>
                   <TextField
@@ -235,10 +242,9 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
                   />
                 </Box>
               </Grid>
-              <Grid item lg={6} md={12} sm={12} xs={12}>
+              <Grid item lg={4} md={12} sm={12} xs={12}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <label style={{ fontSize: "1rem" }}>Nationality</label>
-
                   <FormControl fullWidth>
                     <Select
                       placeholder="Select Country"
@@ -269,7 +275,7 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
                   </FormControl>
                 </Box>
               </Grid>
-              <Grid item lg={6} md={12} sm={12} xs={12}>
+              <Grid item lg={4} md={12} sm={12} xs={12}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <label style={{ fontSize: "1rem" }}>Phone Number</label>
                   <TextField
@@ -286,11 +292,12 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
               <Grid item lg={12} md={12} sm={12} xs={12}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <label style={{ fontSize: "1rem" }}>Special Request</label>
-                  <TextField
+                  <TextareaAutosize
                     placeholder="Special Request"
-                    sx={textFieldStyle}
+                    style={textareaStyle}
                     name="note"
                     value={formValues.note}
+                    minRows={3}
                     onChange={handleChange}
                   />
                 </Box>
@@ -301,9 +308,9 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
           <Box
             sx={{
               border: "1px solid #f0f0f0",
-              padding: "1.3rem 5%",
+              padding: "4%",
               borderRadius: "10px",
-              marginTop: "2rem",
+              marginTop: "1rem",
               background: "#fff",
             }}
           >
@@ -337,11 +344,12 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
               <Grid item lg={12} md={12} sm={12} xs={12}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <label style={{ fontSize: "1rem" }}>Note</label>
-                  <TextField
+                  <TextareaAutosize
                     placeholder="Write your special request here"
-                    sx={textFieldStyle}
+                    style={textareaStyle}
                     name="note"
                     value={formValues.note}
+                    minRows={3}
                     onChange={handleChange}
                   />
                 </Box>
@@ -351,16 +359,69 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
 
           <Box
             sx={{
-              display: "flex",
-              justifyContent: { xs: "center", md: "end" },
-              alignItems: "end",
-              mt: 2,
+              border: "1px solid #f0f0f0",
+              padding: "4%",
+              borderRadius: "10px",
+              marginTop: "1rem",
+              background: "#fff",
             }}
           >
+            <Box>
+              <Typography
+                variant="h1"
+                sx={{ fontSize: "1.2rem", fontWeight: "600", display: 'flex', alignItems: 'center', gap: '10px' }}
+              >
+                <img src={cardIcon} style={{ width: "30px", height: "30px"}}/>
+                Choose a Payment Method
+              </Typography>
+              
+            </Box>
+            <Box sx={{ display: "flex", flexDirection: "column", padding: "15px", backgroundColor: "#f1f1f1", borderRadius: "5px", marginTop: "15px" }}>
+              <RadioGroup
+                aria-label="payment-method"
+                name="payment-method"
+                value={formValues.paymentMethod}
+                onChange={handleChange}
+              >
+                <FormControlLabel
+                  value="creditCard"
+                  checked
+                  control={<Radio />}
+                  label="Credit Card / Debit Card"
+                />
+              </RadioGroup>
+
+              <Typography sx={{ fontSize: "0.9rem", color: "grey" }}>
+                <label style={{color: "#872a10"}}>Note :</label> In the next step you will be redirected to your banks website to verify yourself.
+              </Typography>
+             
+            </Box>
+            
+          </Box>
+
+          <Box
+            sx={{
+              border: "1px solid #f0f0f0",
+              padding: "2%",
+              borderRadius: "10px",
+              marginTop: "1rem",
+              background: "#fff",
+              display: "flex",
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <Box display="flex" alignItems="center">
+              <Checkbox
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+              />
+              <Typography sx={{ fontSize: "0.9rem", color: "grey" }}>
+                By Clicking Pay Now You agree that you have read and understood our <a  href="/terms-&-conditions" style={{color: "#872a10", textDecoration: 'none'}}>terms and conditions.</a>
+              </Typography>
+            </Box>
             <Button
               onClick={handleProceedToPayment}
-
-
               variant="contained"
               sx={{
                 textTransform: "none",
@@ -369,14 +430,12 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
                 backgroundColor: theme.palette.primary.main,
                 color: "white",
               }}
+              disabled={!isChecked}
             >
-              Proceed to payment
+              Pay Now
             </Button>
-
-
-
-
           </Box>
+
         </Grid>
         <Grid item lg={4}>
           <PriceCard data1={data1} activeStep={activeStep} cartData={cartData} />
