@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./CheckoutForm";
 import Cookies from "js-cookie";
 
-const stripePromise = loadStripe("pk_live_51PFdCkFkBaY5Cia8oy73pwJhmyg3kC7f3jxwSRuvmJfcn5oLLJCvhJRwqQvZsqBVkMDLeCQltaKLFI3WUORI8CDS00KQV80uHQ");
-
-
-// const stripePromise = loadStripe("pk_test_51Nl5l2Fd4D0x5hm6bNeeGB3OgSp6LVDsHPSthOuzgiygFol7rB4uUG02e2x1DlTyz48BBGenNM6gd0DJWrozE0cj00b7xF7yx3");
+const stripePromise = loadStripe("pk_test_qblFNYngBkEdjEZ16jxxoWSM");
 
 const StripePayment = ({ data, onNext, paymentData, activeStep, cartData }) => {
     const [cookieData, setCookieData] = useState(null);
@@ -31,13 +26,44 @@ const StripePayment = ({ data, onNext, paymentData, activeStep, cartData }) => {
         }
     }, []);
 
+    const handleCheckout = async () => {
+        const stripe = await stripePromise;
+
+        const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": `Bearer sk_test_26PHem9AhJZvU623DfE1x4sd`
+            },
+            body: new URLSearchParams({
+                "payment_method_types[]": "card",
+                "line_items[0][price_data][currency]": "aed",
+                "line_items[0][price_data][product_data][name]": "Total Amount",
+                "line_items[0][price_data][unit_amount]": totalAmount * 100, // Amount in cents
+                "line_items[0][quantity]": "1",
+                "mode": "payment",
+                "success_url": `${window.location.origin}/booking-info`,
+                "cancel_url": `${window.location.origin}/payment-error`
+            })
+        });
+
+        const session = await response.json();
+
+        // Redirect to Stripe Checkout
+        const result = await stripe.redirectToCheckout({
+            sessionId: session.id,
+        });
+
+        if (result.error) {
+            console.error(result.error.message);
+        }
+    };
+
     return (
-        <Elements stripe={stripePromise} options={'STRIPE_API_KEY'}>
-
-
-
-            <CheckoutForm totalAmount={totalAmount} setTotalAmount={setTotalAmount} onNext={onNext} setTotalValue={setTotalValue} totalValue={totalValue} paymentData={paymentData} activeStep={activeStep} cartData={cartData} />
-        </Elements>
+        <div>
+            <h2>Total Amount: AED {totalAmount}</h2>
+            <button onClick={handleCheckout}>Proceed to Payment</button>
+        </div>
     );
 };
 

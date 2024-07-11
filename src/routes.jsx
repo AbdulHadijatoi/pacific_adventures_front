@@ -321,6 +321,7 @@ import PreviewCard from "./page/gift/PreviewCard";
 import UnAuthDetail from "./page/Help_Page/UnAuthDetail";
 import GenerateCheckoutInvoice from "./page/PaymentDeatils/GenerateCheckoutInvoice";
 import ErrorPage from "./components/ErrorBoundary/components/ErrorPage";
+import PaymentErrorPage from "./page/PaymentDeatils/PaymentErrorPage"; // Import the new component
 
 export default function Router() {
   const dispatch = useDispatch();
@@ -397,6 +398,7 @@ export default function Router() {
     { path: getMatchedRouteForPath("/gift-pay").route, element: <StripeGift nameProp={getMatchedRouteForPath("/gift-pay").nameProp} /> },
     { path: getMatchedRouteForPath("/preview-card").route, element: <PreviewCard nameProp={getMatchedRouteForPath("/preview-card").nameProp} /> },
     { path: getMatchedRouteForPath("/payment-help").route, element: <UnAuthDetail nameProp={getMatchedRouteForPath("/payment-help").nameProp} /> },
+    { path: getMatchedRouteForPath("/payment-error").route, element: <PaymentErrorPage /> }, // Add this line
   ]);
 
   return element;
