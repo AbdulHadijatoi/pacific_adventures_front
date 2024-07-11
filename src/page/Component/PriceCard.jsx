@@ -81,7 +81,7 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
 
 
 
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState('panel0');
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -90,219 +90,202 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
   console.log(cartData, 'allllllllllllll ayyyyyyyyyyyyy')
 
   return (
-    
 
-      <Box sx={{ borderRadius: "10px", display: "flex", justifyContent: "center", flexDirection: "column" }}>
-        {state?.path === "cart" ? (
+        state?.path === "cart" ? (
           <>
             {cartData?.map((item, index) => (
-              <Box
-                key={index}
+              <Accordion
                 sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginTop: "0rem",
-
+                  minWidth: '100%',
                   borderRadius: "5px",
-                  width: "100%",
+                  border: 'none',
+                  marginBottom: "10px"
                 }}
+                variant="outlined"
+                key={index}
+                expanded={expanded === `panel${index}`}
+                onChange={handleChange(`panel${index}`)}
               >
-
-                <Accordion
-                  sx={{
-                    minWidth: '100%',
-
-                  }}
-                  key={index}
-                  expanded="true"
-                  onChange={handleChange(`panel${index}`)}
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls={`panel${index}bh-content`}
+                  id={`panel${index}bh-header`}
+                  minWidth='100%'
                 >
-                  <AccordionSummary
-                    aria-controls={`panel${index}bh-content`}
-                    id={`panel${index}bh-header`}
-                    minWidth='100%'
+                  <Typography sx={{ fontWeight: 600, fontSize: '1rem', minWidth: '100%' }}>
+                    {/* {item?.package?.activity?.name} */}
+
+                    {item?.package?.activity?.name || item?.ac_data?.name}
+
+                  </Typography>
+                </AccordionSummary>
+                <Divider />
+                <AccordionDetails>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "10px",
+                      width: "100%",
+                      borderRadius: "10px",
+                    }}
                   >
-                    <Typography sx={{ fontWeight: 600, fontSize: '1rem', minWidth: '100%' }}>
-                      {/* {item?.package?.activity?.name} */}
-
-                      {item?.package?.activity?.name || item?.ac_data?.name}
-
+                    {/* <Typography sx={{ fontWeight: 600, fontSize: "1rem" }}>
+                  {item?.package?.activity?.name}
+                </Typography> */}
+                    <Typography
+                      sx={{
+                        fontSize: "0.9rem",
+                        color: theme.palette.primary.textPrimary,
+                        wordBreak: "break-word",
+                        overflowWrap: "break-word",
+                        display: "-webkit-box",
+                        WebkitBoxOrient: "vertical",
+                        WebkitLineClamp: 2,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        maxHeight: "4.5rem",
+                        lineHeight: "1.5rem",
+                      }}
+                    >
+                      {/* {item?.package?.title || item?.ac_data?.name} */}
                     </Typography>
-                  </AccordionSummary>
-                  <Divider />
-                  <AccordionDetails>
+                    <Typography
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "5px",
+                        fontWeight: 600,
+                      }}
+                    >
+                      <MdOutlineDateRange size={22} /> &nbsp;
+                      {item.tour_date ? item.tour_date : item.date}
+                    </Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+
+                      <Typography>Adult :</Typography>
+
+                      <Typography>
+
+                        {item.adult ? item.adult : item.adult}
+
+                      </Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+
+                      <Typography>Infant :</Typography>
+
+                      <Typography>
+
+                        {item.infant ? item.infant : item.infant}
+
+                      </Typography>
+                    </Box>
+
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+
+                      <Typography>Child :</Typography>
+
+                      <Typography>
+
+                        {item.child ? item.child : item.child}
+
+                      </Typography>
+                    </Box>
+
+                    <div>
+                      {auth && (
+                        <>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <Typography>
+                              <IoPerson /> &nbsp;1 * Adult
+                            </Typography>
+
+                            <Typography>
+
+
+
+
+                              AED
+                              {item?.package?.category === "sharing"
+                                ? item?.package?.adult_price
+                                : item?.package?.price}
+                            </Typography>
+                          </Box>
+                        </>
+                      )}
+                    </div>
+
+                    {/* <Typography><IoPerson /> &nbsp;1 * Adult</Typography>
+                  <Typography>AED
+
+                  {item?.package?.category === 'sharing' ? item?.package?.adult_price : item?.package?.price}
+
+
+                  </Typography> */}
+
                     <Box
                       sx={{
                         display: "flex",
-                        flexDirection: "column",
-                        gap: "13px",
-                        width: "90%",
+                        alignItems: "center",
+                        justifyContent: "space-between",
                       }}
                     >
-                      {/* <Typography sx={{ fontWeight: 600, fontSize: "1rem" }}>
-                    {item?.package?.activity?.name}
-                  </Typography> */}
-                      <Typography
-                        sx={{
-                          fontSize: "0.9rem",
-                          color: theme.palette.primary.textPrimary,
-                          wordBreak: "break-word",
-                          overflowWrap: "break-word",
-                          display: "-webkit-box",
-                          WebkitBoxOrient: "vertical",
-                          WebkitLineClamp: 2,
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          maxHeight: "4.5rem",
-                          lineHeight: "1.5rem",
-                        }}
-                      >
-                        {/* {item?.package?.title || item?.ac_data?.name} */}
-                      </Typography>
-                      <Typography
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "5px",
-                          fontWeight: 600,
-                        }}
-                      >
-                        <MdOutlineDateRange size={22} /> &nbsp;
-                        {item.tour_date ? item.tour_date : item.date}
-                      </Typography>
-                      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-
-                        <Typography>Adult :</Typography>
-
-                        <Typography>
-
-                          {item.adult ? item.adult : item.adult}
-
-                        </Typography>
-                      </Box>
-                      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-
-                        <Typography>Infant :</Typography>
-
-                        <Typography>
-
-                          {item.infant ? item.infant : item.infant}
-
-                        </Typography>
-                      </Box>
-
-                      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-
-                        <Typography>Child :</Typography>
-
-                        <Typography>
-
-                          {item.child ? item.child : item.child}
-
-                        </Typography>
-                      </Box>
-
-                      <div>
-                        {auth && (
-                          <>
-                            <Box
-                              sx={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              <Typography>
-                                <IoPerson /> &nbsp;1 * Adult
-                              </Typography>
-
-                              <Typography>
-
-
-
-
-                                AED
-                                {item?.package?.category === "sharing"
-                                  ? item?.package?.adult_price
-                                  : item?.package?.price}
-                              </Typography>
-                            </Box>
-                          </>
-                        )}
-                      </div>
-
-                      {/* <Typography><IoPerson /> &nbsp;1 * Adult</Typography>
-                    <Typography>AED
-
-                    {item?.package?.category === 'sharing' ? item?.package?.adult_price : item?.package?.price}
-
-
-                    </Typography> */}
-
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <Typography>Sub Total</Typography>
-                        <Typography> AED {item.price}</Typography>
-                      </Box>
+                      <Typography>Sub Total</Typography>
+                      <Typography> AED {item.price}</Typography>
                     </Box>
-                  </AccordionDetails>
-                </Accordion>
-              </Box>
+                  </Box>
+                  <br/>
+                  <Divider />
+                  <Box sx={{ display: "flex", alignItems: "center", margin: "20px 0px" }}>
 
-
-
-            ))}
-            <Box
-              sx={{ display: "flex", alignItems: "center", margin: "20px 0px" }}
-            >
-              {activeStep !== 0 && (
-                <TextField
-                  label="Voucher Code"
-                  value={voucherCode}
-                  onChange={(e) => setVoucherCode(e.target.value)}
-                  variant="outlined"
-                  sx={{
-                    flex: 1,
-                    borderRadius: "10px",
-                    backgroundColor: "whitesmoke",
-                    "&:hover": { backgroundColor: "white" },
-                  }}
-                  InputProps={{
-                    endAdornment: loading ? (
-                      <Loader />
-                    ) : (
+                      <TextField
+                        label="Voucher Code"
+                        value={voucherCode}
+                        onChange={(e) => setVoucherCode(e.target.value)}
+                        variant="outlined"
+                        sx={{
+                          flex: 1,
+                          borderRadius: "10px",
+                        }}
+                        
+                      />
+                     
                       <Button
-                        variant="contained"
+                        variant="outlined"
                         onClick={handleVoucherApply}
                         sx={{
-                          borderTopLeftRadius: 0,
-                          borderBottomLeftRadius: 0,
-                          padding: "10px 50px",
-                          height: "100%",
-                          borderTopRightRadius: "10px",
-                          borderBottomRightRadius: "10px",
+                          padding: "15px 50px",
+                          borderRadius: "5px",
+                          marginLeft: "5px"
                         }}
                       >
                         Apply
                       </Button>
-                    ),
-                  }}
-                />
-              )}
-            </Box>
+                  
+                  </Box>
+                </AccordionDetails>
+              </Accordion>
+            ))}
+
+            
 
             <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
+            sx={{
+              padding: "4%",
+              border: "1px solid #f0f0f0",
+              borderRadius: "5px",
+              background: "#fff",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
             >
               <Typography variant="h6">Total Amount:</Typography>
               <Typography
@@ -318,21 +301,21 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
           <>
             <Box
               sx={{
-                padding: "3rem 5%",
+                
                 border: "1px solid #f0f0f0",
                 borderRadius: "10px",
                 background: "#fff",
               }}
             >
-              {/* <Typography
+              <Typography
                 variant="h1"
-                sx={{ fontSize: "1.3rem", fontWeight: "600", marginBottom: "1rem" }}
+                sx={{ padding: "20px 30px 0px 30px", fontSize: "1.3rem", fontWeight: "600", marginBottom: "1rem" }}
               >
-                Summary
-              </Typography> */}
-              {/* <Divider /> */}
+                {data1?.title}
+              </Typography>
+              <Divider />
 
-              <Box sx={{ marginTop: "0rem" }}>
+              <Box sx={{ marginTop: "0rem", padding: "5%"}}>
                 <Box
                   sx={{
                     display: "flex",
@@ -421,7 +404,6 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
                     margin: "20px 0px",
                   }}
                 >
-                  {activeStep !== 0 && (
                     <TextField
                       label="Voucher Code"
                       value={voucherCode}
@@ -430,8 +412,6 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
                       sx={{
                         flex: 1,
                         borderRadius: "10px",
-                        backgroundColor: "whitesmoke",
-                        "&:hover": { backgroundColor: "white" },
                       }}
                       InputProps={{
                         endAdornment: (
@@ -439,8 +419,7 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
                             variant="contained"
                             onClick={handleVoucherApply}
                             sx={{
-                              borderTopLeftRadius: 0,
-                              borderBottomLeftRadius: 0,
+                              borderRadius: "10px",
                               padding: "10px 50px",
                               height: "100%",
                             }}
@@ -448,13 +427,9 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
                             Apply
                           </Button>
                         ),
-                        sx: {
-                          borderTopRightRadius: "10px",
-                          borderBottomRightRadius: "10px",
-                        },
+                        
                       }}
                     />
-                  )}
                 </Box>
 
                 <Box
@@ -487,8 +462,7 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
               </Box>
             </Box>
           </>
-        )}
-      </Box>
+        )
 
   );
 };
