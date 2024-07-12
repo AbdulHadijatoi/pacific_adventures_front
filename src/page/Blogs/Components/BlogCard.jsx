@@ -71,7 +71,7 @@ const BlogCard = () => {
                     {blog?.map((val, ind) => (
                         <Grid item lg={4} md={6} sm={12} xs={12} key={ind}>
                             <Box>
-                                <Box sx={{ backgroundColor: '#fdf4f1' }}>
+                                <Box sx={{ backgroundColor: '#FFF' }}>
                                     <Box>
                                         <img src={`${base}${val.banner_image_url}`} alt='' style={{ objectFit: 'cover', width: '100%', height: '30vh' }} />
                                     </Box>

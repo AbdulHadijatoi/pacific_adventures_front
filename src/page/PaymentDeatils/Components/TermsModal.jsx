@@ -16,7 +16,7 @@ const TermsModal = ({ isOpen, onClose }) => {
     >
 
 <Box sx={{
-                     position: "absolute",
+          position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
@@ -27,6 +27,7 @@ const TermsModal = ({ isOpen, onClose }) => {
           bgcolor: "background.paper",
           boxShadow: 24,
           p: 4,
+          outline: 'none',
           borderRadius: "8px",
             }}>
 

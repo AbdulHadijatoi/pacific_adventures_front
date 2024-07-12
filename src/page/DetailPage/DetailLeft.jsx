@@ -434,13 +434,11 @@ const DetailLeft = ({ ac_data, loading, boxref, endtime, duration }) => {
                                             padding: "20px",
                                             border:
                                                 selectedItemIndex === index
-                                                    ? "2px solid red"
-                                                    : "1px solid #EDEDED",
+                                                    ? "2px solid #832c13"
+                                                    : "1px solid #832c13",
                                             borderRadius: "10px",
                                             marginBottom: "10px",
                                             cursor: "pointer",
-                                            backgroundColor:
-                                                selectedItemIndex === index ? "#FFE4E1" : "#EDEDED",
                                             display: "flex",
                                             alignItems: "start",
                                             // justifyContent: 'space-between'
@@ -709,11 +707,12 @@ const DetailLeft = ({ ac_data, loading, boxref, endtime, duration }) => {
                                         display: "flex",
                                         alignItems: "center",
                                         gap: 2,
-                                        justifyContent: "space-around",
+                                        justifyContent: "space-between",
                                     }}
                                 >
                                     <Typography sx={{ fontSize: "0.9rem", fontWeight: "700" }}>
-                                        Adult
+                                        Adult (AED {ac_data?.packages[0].adult_price})
+                                        
                                     </Typography>
 
                                     <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -748,11 +747,11 @@ const DetailLeft = ({ ac_data, loading, boxref, endtime, duration }) => {
                                         display: "flex",
                                         alignItems: "center",
                                         gap: 2,
-                                        justifyContent: "space-around",
+                                        justifyContent: "space-between",
                                     }}
                                 >
                                     <Typography sx={{ fontSize: "0.9rem", fontWeight: "700" }}>
-                                        Child
+                                        Child (AED {ac_data?.packages[0].child_price})
                                     </Typography>
 
                                     <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -784,7 +783,7 @@ const DetailLeft = ({ ac_data, loading, boxref, endtime, duration }) => {
                                         display: "flex",
                                         alignItems: "center",
                                         gap: 2,
-                                        justifyContent: "space-around",
+                                        justifyContent: "space-between",
                                     }}
                                 >
                                     <Typography sx={{ fontSize: "0.9rem", fontWeight: "700" }}>

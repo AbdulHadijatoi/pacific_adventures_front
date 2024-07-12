@@ -63,7 +63,7 @@ const History = ({ nameProp }) => {
                     <Grid container spacing={3}>
                         {history.map(item => (
                             <Grid item lg={12} key={item.id} >
-                                <Box sx={{ backgroundColor: '#FDF4F1', padding: '10px', display: 'flex', gap: '30px', flexWrap: 'wrap' }}>
+                                <Box sx={{ backgroundColor: '#FFF', padding: '10px', display: 'flex', gap: '30px', flexWrap: 'wrap' }}>
 
                                     <Box flex={1}>
                                         <img src={`https://admin.pacific-adventures.com/storage/uploads/media/${item.image}`} alt="image" style={{ height: '100%', width: '100%', objectFit: 'cover', borderRadius: '5px' }} />

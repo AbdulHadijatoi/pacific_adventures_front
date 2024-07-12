@@ -272,7 +272,7 @@ const isAuth = useSelector((state)=>state?.auth?.isAuthenticated)
             key={ind}
             onClick={() => navigate(`/${val.slug}`)}
           >
-            <Card sx={{ p: 2, background: "#FDF4F1" }}>
+            <Card sx={{ p: 2, background: "#FFF" }}>
               <Box
                 sx={{
                   display: "flex",

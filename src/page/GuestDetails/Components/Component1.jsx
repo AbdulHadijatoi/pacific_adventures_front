@@ -7,6 +7,7 @@ import {
   Select,
   FormControlLabel,
   Radio,
+  Link,
   RadioGroup,
   Checkbox,
   TextField,
@@ -22,7 +23,10 @@ import Cookies from 'js-cookie';
 import { Booking } from '../../../store/actions/categoriesActions';
 import PriceCard from "../../Component/PriceCard";
 import cardIcon from '/card.svg';
+import { loadStripe } from "@stripe/stripe-js";
+import TermsModal from '../../PaymentDeatils/Components/TermsModal';
 
+const stripePromise = loadStripe("pk_test_qblFNYngBkEdjEZ16jxxoWSM");
 const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
   const theme = useTheme();
   const [payNow, setPayNow] = useState(false);
@@ -48,6 +52,14 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+      setIsModalOpen(false);
+  };
 
   useEffect(() => {
     fetch(
@@ -104,7 +116,7 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
     if (!validate()) return;
 
     let bookingDetails;
-
+    let totalAmount = 0; //I added this
     if (state?.path === 'cart') {
       const { date, adult, child, infant, total_amount, id, package_details, activity_name } = cartData;
       bookingDetails = {
@@ -116,6 +128,7 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
         payment: 'fail',
         package_details: cartData,
       };
+      totalAmount = dete?.total_amount;//I added this
     } else {
       bookingDetails = {
         ...formValues,
@@ -126,12 +139,48 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
         payment: 'fail',
         package_details: [data?.package],
       };
+
+      totalAmount = data?.total_amount;//I added this
     }
 
     localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
 
-    onNext();
+    handleCheckout(totalAmount);
   };
+
+// I ADDED (below)
+const handleCheckout = async (totalAmount) => {
+    const stripe = await stripePromise;
+
+    const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": `Bearer sk_test_26PHem9AhJZvU623DfE1x4sd`
+        },
+        body: new URLSearchParams({
+            "payment_method_types[]": "card",
+            "line_items[0][price_data][currency]": "aed",
+            "line_items[0][price_data][product_data][name]": "Total Amount",
+            "line_items[0][price_data][unit_amount]": totalAmount * 100, // Amount in cents
+            "line_items[0][quantity]": "1",
+            "mode": "payment",
+            "success_url": `${window.location.origin}/booking-info`,
+            "cancel_url": `${window.location.origin}/payment-error`
+        })
+    });
+
+    const session = await response.json();
+
+    // Redirect to Stripe Checkout
+    const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+    });
+
+    if (result.error) {
+        console.error(result.error.message);
+    }
+};
 
   const textFieldStyle = {
     marginTop: "1rem",
@@ -417,10 +466,15 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
                 onChange={handleCheckboxChange}
               />
               <Typography sx={{ fontSize: "0.9rem", color: "grey" }}>
-                By Clicking Pay Now You agree that you have read and understood our <a  href="/terms-&-conditions" style={{color: "#872a10", textDecoration: 'none'}}>terms and conditions.</a>
+                By Clicking Pay Now You agree that you have read and understood our{" "}
+                <Link onClick={handleModalOpen} style={{ cursor: "pointer", fontSize: '0.9rem', color: theme.palette.primary.main, textDecoration: "none" }}>
+                    Terms and Conditions
+                </Link>{" "}
+
               </Typography>
             </Box>
             <Button
+              // onClick={handleCheckout}
               onClick={handleProceedToPayment}
               variant="contained"
               sx={{
@@ -441,6 +495,7 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
           <PriceCard data1={data1} activeStep={activeStep} cartData={cartData} />
         </Grid>
       </Grid>
+      <TermsModal isOpen={isModalOpen} onClose={handleModalClose} />
     </>
   );
 };

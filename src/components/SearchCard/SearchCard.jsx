@@ -169,7 +169,7 @@ const SearchCard = () => {
           token ? (
             <Box sx={{ mt: 3 }} key={ind} padding={'0rem 5%'}>
 
-              <Card sx={{ p: 2, background: "#FDF4F1" }}>
+              <Card sx={{ p: 2, background: "#FFF" }}>
 
                 <Grid container spacing={3}>
                   <Grid item lg={4} md={12} sm={12} xs={12}>
@@ -247,7 +247,7 @@ const SearchCard = () => {
             </Box>
           ) : (
             <Box sx={{ mt: 3 }} key={ind}>
-              <Card sx={{ p: 2, background: "#FDF4F1" }}>
+              <Card sx={{ p: 2, background: "#FFF" }}>
 
                 <Grid container spacing={3}>
                   <Grid item lg={4} md={12} sm={12} xs={12}>

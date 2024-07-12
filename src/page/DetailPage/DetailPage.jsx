@@ -500,7 +500,7 @@ const DetailPage = ({ nameProp }) => {
                         <Button
                           sx={{
                             ...btnStyle,
-                            color: isHighlighted("description") ? "red" : "#0D0D0D",
+                            color: isHighlighted("description") ? "#832c13" : "#0D0D0D",
                           }}
                         >
                           Description
@@ -511,7 +511,7 @@ const DetailPage = ({ nameProp }) => {
                           sx={{
                             ...btnStyle,
                             color: isHighlighted("Highlight")
-                              ? "red"
+                              ? "#832c13"
                               : "#0D0D0D",
                             fontSize: '0.9rem',
 
@@ -525,7 +525,7 @@ const DetailPage = ({ nameProp }) => {
                           sx={{
                             ...btnStyle,
                             color: isHighlighted("itinerary")
-                              ? "red"
+                              ? "#832c13"
                               : "#0D0D0D",
                             fontSize: '0.9rem'
 
@@ -539,7 +539,7 @@ const DetailPage = ({ nameProp }) => {
                           sx={{
                             ...btnStyle,
                             color: isHighlighted("whats-included")
-                              ? "red"
+                              ? "#832c13"
                               : "#0D0D0D",
                             fontSize: '0.9rem'
 
@@ -553,7 +553,7 @@ const DetailPage = ({ nameProp }) => {
                           sx={{
                             ...btnStyle,
                             color: isHighlighted("whats-not-included")
-                              ? "red"
+                              ? "#832c13"
                               : "#0D0D0D",
                             fontSize: '0.9rem'
 
@@ -567,7 +567,7 @@ const DetailPage = ({ nameProp }) => {
                           sx={{
                             ...btnStyle,
                             color: isHighlighted("trip-instructions")
-                              ? "red"
+                              ? "#832c13"
                               : "#0D0D0D",
                             fontSize: '0.9rem'
 
@@ -772,10 +772,7 @@ const DetailPage = ({ nameProp }) => {
                               key={index}
                               expanded={openAccordion === `panel${index}`}
                               onChange={handleAccordionChange(`panel${index}`)}
-                              sx={{
-                                backgroundColor: "#ffaf95",
-                                color: "black",
-                              }}
+                              
                             >
                               <AccordionSummary
                                 expandIcon={

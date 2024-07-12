@@ -176,7 +176,7 @@ const LeftSideComponents = ({ setTotalPrice }) => {
         {allCart?.map((val, index) => {
           if (!token) {
             return (
-              <Card sx={{ p: 2, background: "#FDF4F1", mb: 4 }} key={index}>
+              <Card sx={{ p: 2, background: "#FFF", mb: 4 }} key={index}>
                 {val?.ac_data?.packages?.map(
                   (packageItem, packageIndex) =>
                     packageItem.id === val.package_id && (
@@ -370,7 +370,7 @@ const LeftSideComponents = ({ setTotalPrice }) => {
           } else {
             // Assuming allCartRedux is a simple array
             return (
-              <Card sx={{ p: 2, background: "#FDF4F1", mb: 4 }} key={index}>
+              <Card sx={{ p: 2, background: "#FFF", mb: 4, border: "1px solid rgba(0,0,0,0.08)" }} key={index}>
                 <Box sx={{
                   minHeight: {
                     md: '30vh',
