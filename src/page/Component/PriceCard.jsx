@@ -23,7 +23,7 @@ import Loader from "../../components/Loader/Loader";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
-  console.log(total, 'kkkkkkkkkkk')
+  console.log(total)
   const { enqueueSnackbar } = useSnackbar();
 
   const [voucherCode, setVoucherCode] = useState("");
@@ -36,7 +36,7 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
   const [loading, setLoading] = useState(false);
   const pathnameCookie = Cookies.get("pathname");
   const totalBooking = JSON.parse(localStorage.getItem("bookingDetails") || "{}");
-  console.log(state, 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
+  console.log(state)
   const auth = useSelector((state) => state?.auth?.isAuthenticated);
   const handleVoucherApply = async () => {
     setLoading(true);
@@ -87,7 +87,7 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  console.log(cartData, 'allllllllllllll ayyyyyyyyyyyyy')
+  console.log(cartData)
 
   return (
 

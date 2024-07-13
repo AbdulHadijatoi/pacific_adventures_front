@@ -23,6 +23,7 @@ import Cookies from 'js-cookie';
 import { Booking } from '../../../store/actions/categoriesActions';
 import PriceCard from "../../Component/PriceCard";
 import cardIcon from '/card.svg';
+import { useSnackbar } from "notistack";
 import { loadStripe } from "@stripe/stripe-js";
 import TermsModal from '../../PaymentDeatils/Components/TermsModal';
 
@@ -38,6 +39,7 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
     setIsChecked(event.target.checked);
   };
   const userData = useSelector((state) => state?.auth?.user);
+  const { enqueueSnackbar } = useSnackbar();
 
   const [formValues, setFormValues] = useState({
     title: "Mr",
@@ -112,8 +114,21 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
     }
   }, []);
 
+  const generateRandomString = (length = 7) => {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let result = '';
+      const charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      return result;
+  };
+
   const handleProceedToPayment = () => {
-    if (!validate()) return;
+    if (!validate()){
+      enqueueSnackbar('Please check the fields data!', { variant: 'error' });
+      return;
+    } 
 
     let bookingDetails;
     let totalAmount = 0; //I added this
@@ -125,7 +140,8 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
         date: dete?.date,
         total_amount: dete?.total_amount,
         status: "pending",
-        payment: 'fail',
+        payment: 'failed',
+        reference_id: generateRandomString(),
         package_details: cartData,
       };
       totalAmount = dete?.total_amount;//I added this
@@ -136,7 +152,8 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
         date: data?.date,
         total_amount: data?.total_amount,
         status: "pending",
-        payment: 'fail',
+        payment: 'failed',
+        reference_id: generateRandomString(),
         package_details: [data?.package],
       };
 
@@ -145,7 +162,8 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
 
     localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
 
-    handleCheckout(totalAmount);
+    onNext();
+    // handleCheckout(totalAmount);
   };
 
 // I ADDED (below)
@@ -470,7 +488,6 @@ const handleCheckout = async (totalAmount) => {
                 <Link onClick={handleModalOpen} style={{ cursor: "pointer", fontSize: '0.9rem', color: theme.palette.primary.main, textDecoration: "none" }}>
                     Terms and Conditions
                 </Link>{" "}
-
               </Typography>
             </Box>
             <Button
