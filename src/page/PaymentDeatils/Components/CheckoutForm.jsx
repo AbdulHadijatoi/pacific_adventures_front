@@ -96,7 +96,7 @@ const CheckoutForm = ({ onNext, data, totalAmount, setTotalAmount, paymentData, 
     useEffect(() => {
         window.scroll(0, 0);
         booking();
-        openStripeGatewayPage();
+        // openStripeGatewayPage();
     }, [])
 
     const ids = Cookies.get('id') ? JSON.parse(Cookies.get('id')) : [];
@@ -131,7 +131,7 @@ const CheckoutForm = ({ onNext, data, totalAmount, setTotalAmount, paymentData, 
     // BOOKING FUNCTION FOR BACKEND DATA STRONG: BEGINS
     const booking = async () => {
         const bookingDetails = JSON.parse(localStorage.getItem('bookingDetails'));
-        console.log(bookingDetails, 'ddd');
+        console.log(bookingDetails);
 
         if (state.path === 'cart') {
             bookingDetails.package_details = cartData;
@@ -155,25 +155,25 @@ const CheckoutForm = ({ onNext, data, totalAmount, setTotalAmount, paymentData, 
         }
     };
     
-    const updateStatus = async () => {
-        const reference_id = JSON.parse(localStorage.getItem('bookingNumber'));
-        console.log("reference_id",reference_id);
+    // const updateStatus = async () => {
+    //     const reference_id = JSON.parse(localStorage.getItem('bookingNumber'));
+    //     console.log("reference_id",reference_id);
 
-        try {
-            const res = await dispatch(Booking(bookingDetails, token));
-            const bookingNumber = res?.data?.payload?.reference_id;
-            setBookingNum(bookingNumber);
-            localStorage.setItem('bookingNumber', bookingNumber);
-            enqueueSnackbar('Booking successful!', { variant: 'success' });
-            localStorage.removeIt2em('addCartData');
-            handleDelete(ids);
-            // onNext();
-        } catch (error) {
-            console.error('Error in booking:', error);
-            enqueueSnackbar('Booking Failed!', { variant: 'error' });
-            setPaymentError("Error in booking. Please try again later.");
-        }
-    };
+    //     try {
+    //         const res = await dispatch(Booking(bookingDetails, token));
+    //         const bookingNumber = res?.data?.payload?.reference_id;
+    //         setBookingNum(bookingNumber);
+    //         localStorage.setItem('bookingNumber', bookingNumber);
+    //         enqueueSnackbar('Booking successful!', { variant: 'success' });
+    //         localStorage.removeItem('addCartData');
+    //         handleDelete(ids);
+    //         // onNext();
+    //     } catch (error) {
+    //         console.error('Error in booking:', error);
+    //         enqueueSnackbar('Booking Failed!', { variant: 'error' });
+    //         setPaymentError("Error in booking. Please try again later.");
+    //     }
+    // };
     // BOOKING FUNCTION FOR BACKEND DATA STRONG: ENDS
 
     

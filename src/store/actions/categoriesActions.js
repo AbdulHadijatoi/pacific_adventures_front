@@ -73,6 +73,20 @@ export const Send_Gift = (body) => async (dispatch) => {
   }
 };
 
+export const UpdateBookingStatus = (reference_id) => async (dispatch) => {
+  try {
+    const endpoint = "status/booking/"+ reference_id;
+
+    const res = await api.post(endpoint,{status: "success"});
+    dispatch({
+      type: "BOOKING",
+      payload: res.data,
+    });
+    return res;
+  } catch (err) {
+    throw err;
+  }
+};
 
 export const Booking = (body, token, package_details) => async (dispatch) => {
   console.log(body, 'zzzzzzzz')

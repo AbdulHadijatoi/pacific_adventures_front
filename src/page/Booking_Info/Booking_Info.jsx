@@ -3,9 +3,13 @@ import { Box, Grid, Typography } from '@mui/material';
 import Page from '../../components/page';
 import BookingDetails from './BookingDetails';
 import Cookies from 'js-cookie';
+import { UpdateBookingStatus } from '../../store/actions/categoriesActions';
+import { useSnackbar } from "notistack";
 
 const Booking_Info = ({ activeStep }) => {
   const [data, setData] = useState(null);
+  const token = useSelector((state) => state?.auth?.token);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     const cookieData = Cookies.get('bookingDetails');
@@ -13,6 +17,29 @@ const Booking_Info = ({ activeStep }) => {
       setData(JSON.parse(cookieData));
     }
   }, [activeStep]);
+
+  const updateStatus = async () => {
+    const reference_id = localStorage.getItem('bookingNumber');
+    if(reference_id == null){
+      enqueueSnackbar('Booking processed already!', { variant: 'error' });
+      window.location = '/';
+    }
+    console.log("reference_id",reference_id);
+    try {
+        const res = await dispatch(UpdateBookingStatus(reference_id));
+        // REMOVE LOCALSTORAGE DATA:BEGINS
+        const tokenValue = localStorage.getItem('token');
+        localStorage.clear();
+        if (tokenValue) {
+            localStorage.setItem('token', tokenValue);
+        }
+        // REMOVE LOCALSTORAGE DATA:ENDS
+    } catch (error) {
+        console.error('Error in booking:', error);
+        // enqueueSnackbar('Booking Failed!', { variant: 'error' });
+        // setPaymentError("Error in booking. Please try again later.");
+    }
+};
 
   return (
     <Page title="Booking Information">

@@ -26,6 +26,7 @@ import cardIcon from '/card.svg';
 import { useSnackbar } from "notistack";
 import { loadStripe } from "@stripe/stripe-js";
 import TermsModal from '../../PaymentDeatils/Components/TermsModal';
+import { deleteCart } from "../../../store/actions/cartActions";
 
 const stripePromise = loadStripe("pk_test_qblFNYngBkEdjEZ16jxxoWSM");
 const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
@@ -33,6 +34,8 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
   const [payNow, setPayNow] = useState(false);
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [paymentError, setPaymentError] = useState(null);
+  const token = useSelector((state) => state?.auth?.token);
   const { state } = useLocation();
   const [isChecked, setIsChecked] = useState(false);
   const handleCheckboxChange = (event) => {
@@ -162,43 +165,121 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
 
     localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
 
-    onNext();
-    // handleCheckout(totalAmount);
+
+    booking();
+
   };
 
 // I ADDED (below)
-const handleCheckout = async (totalAmount) => {
-    const stripe = await stripePromise;
 
-    const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": `Bearer sk_test_26PHem9AhJZvU623DfE1x4sd`
-        },
-        body: new URLSearchParams({
-            "payment_method_types[]": "card",
-            "line_items[0][price_data][currency]": "aed",
-            "line_items[0][price_data][product_data][name]": "Total Amount",
-            "line_items[0][price_data][unit_amount]": totalAmount * 100, // Amount in cents
-            "line_items[0][quantity]": "1",
-            "mode": "payment",
-            "success_url": `${window.location.origin}/booking-info`,
-            "cancel_url": `${window.location.origin}/payment-error`
-        })
-    });
+const ids = Cookies.get('id') ? JSON.parse(Cookies.get('id')) : [];
 
-    const session = await response.json();
 
-    // Redirect to Stripe Checkout
-    const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-    });
+const booking = async () => {
+  const bookingDetails = JSON.parse(localStorage.getItem('bookingDetails'));
 
-    if (result.error) {
-        console.error(result.error.message);
-    }
+  if (state.path === 'cart') {
+      bookingDetails.package_details = cartData;
+  }
+
+  try {
+      const res = await dispatch(Booking(bookingDetails, token));
+      const bookingNumber = res?.data?.payload?.reference_id;
+
+      // setBookingNum(bookingNumber);
+      localStorage.setItem('bookingNumber', bookingNumber);
+      // enqueueSnackbar('Booking successful!', { variant: 'success' });
+      localStorage.removeItem('addCartData');
+      handleDelete(ids);
+      openStripeGatewayPage()
+  } catch (error) {
+      console.error('Error in booking:', error);
+      // enqueueSnackbar('Booking Failed!', { variant: 'error' });
+      setPaymentError("Error in booking. Please try again later.");
+  }
 };
+
+const openStripeGatewayPage = async () => {
+  try {
+      const stripe = await stripePromise;
+      const bookingDetails = localStorage.getItem('bookingDetails');
+
+      if (!bookingDetails) {
+          throw new Error("Booking details not found in localStorage");
+      }
+
+      const totalAmount = JSON.parse(bookingDetails)?.total_amount;
+      const reference_id = JSON.parse(bookingDetails)?.reference_id;
+      if (!totalAmount) {
+          throw new Error("Total amount is missing from booking details");
+      }
+
+      const encodedBookingData = encodeURIComponent(bookingDetails);
+
+      const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "Authorization": `Bearer sk_test_26PHem9AhJZvU623DfE1x4sd`
+          },
+          body: new URLSearchParams({
+              "payment_method_types[]": "card",
+              "line_items[0][price_data][currency]": "aed",
+              "line_items[0][price_data][product_data][name]": "Tour Booking",
+              "line_items[0][price_data][unit_amount]": (totalAmount * 100), // Amount in cents
+              "line_items[0][quantity]": "1",
+              "mode": "payment",
+              "success_url": `${window.location.origin}/booking-info?activeStep=2`,
+              "cancel_url": `${window.location.origin}/payment-error`
+          })
+      });
+
+      if (!response.ok) {
+          const errorData = await response.json();
+          console.error(`Error creating Stripe session: ${response.statusText}`, errorData);
+          throw new Error(`Error creating Stripe session: ${errorData.error.message}`);
+      }
+
+      const session = await response.json();
+
+      // Redirect to Stripe Checkout
+      const result = await stripe.redirectToCheckout({
+          sessionId: session.id,
+      });
+
+      if (result.error) {
+          console.error(result.error.message);
+      }
+  } catch (error) {
+      console.error("Error in openStripeGatewayPage:", error.message);
+  }
+};
+
+const handleDelete = async (ids) => {
+
+  if (token) {
+      try {
+          for (const id of ids) {
+              const res = await dispatch(deleteCart(id));
+          }
+      } catch (err) {
+          console.error(err);
+
+      }
+  } else {
+      Cookies.remove('id');
+      const currentData = localStorage.getItem('addCartData');
+
+      if (currentData) {
+          // Step 2: Modify the data to be empty (assuming 'addCartData' contains an array)
+          const emptyData = [];
+          localStorage.setItem('addCartData', JSON.stringify(emptyData));
+          console.log('Array emptied in localStorage');
+      }
+  }
+  // enqueueSnackbar("Cart data cleared from cookies", { variant: "info" });
+};
+
 
   const textFieldStyle = {
     marginTop: "1rem",
