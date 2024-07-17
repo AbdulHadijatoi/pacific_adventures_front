@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import Page from '../../components/page';
+import { useSelector } from "react-redux";
 import BookingDetails from './BookingDetails';
 import Cookies from 'js-cookie';
 import { UpdateBookingStatus } from '../../store/actions/categoriesActions';
