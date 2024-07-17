@@ -79,7 +79,7 @@ const BookingDetails = ({ data }) => {
         <Box
           sx={{ margin: "3rem 1rem", display: "flex", marginTop: '10px', justifiyContent: 'Right' }}
         >
-          <Button
+          {/* <Button
             onClick={handleCancel}
             variant="contained"
             sx={{
@@ -107,7 +107,7 @@ const BookingDetails = ({ data }) => {
             }}
           >
             Print Voucher
-          </Button>
+          </Button> */}
         </Box>
       </Grid>
     </Box>
