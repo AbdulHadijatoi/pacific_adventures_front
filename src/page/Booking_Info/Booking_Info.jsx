@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import Page from '../../components/page';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BookingDetails from './BookingDetails';
 import Cookies from 'js-cookie';
 import { UpdateBookingStatus } from '../../store/actions/categoriesActions';
-import { useDispatch, useSnackbar } from "notistack";
+import { useSnackbar } from "notistack";
 
 const Booking_Info = ({ activeStep }) => {
   const [data, setData] = useState(null);
   const token = useSelector((state) => state?.auth?.token);
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     const cookieData = Cookies.get('bookingDetails');
     if (cookieData) {
