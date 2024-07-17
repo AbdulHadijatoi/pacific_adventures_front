@@ -68,12 +68,12 @@ const BookingDetails = ({ data }) => {
           <Details title="Date" value={data?.date} />
 
           <Details title="Phone" value={data?.phone} />
-          {!state.path === 'cart' && (
+          {/* {!state.path === 'cart' && (
             <>
               <Details title="Adult" value={data?.adult} />
               <Details title="Child" value={data?.child} />
             </>
-          )}
+          )} */}
           <Details title="Fee Included" value="24 Feb, 2024" />
         </Grid>
         <Box
