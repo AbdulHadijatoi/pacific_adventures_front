@@ -17,6 +17,7 @@ const Booking_Info = ({ activeStep }) => {
     if (cookieData) {
       setData(JSON.parse(cookieData));
     }
+    updateStatus();
   }, [activeStep]);
 
   const updateStatus = async () => {

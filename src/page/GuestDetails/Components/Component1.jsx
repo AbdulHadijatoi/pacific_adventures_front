@@ -30,6 +30,7 @@ import { deleteCart } from "../../../store/actions/cartActions";
 
 const stripePromise = loadStripe("pk_test_qblFNYngBkEdjEZ16jxxoWSM");
 const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
+  const [isClicked, setIsClicked] = useState(false);
   const theme = useTheme();
   const [payNow, setPayNow] = useState(false);
   const [countries, setCountries] = useState([]);
@@ -132,7 +133,7 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
       enqueueSnackbar('Please check the fields data!', { variant: 'error' });
       return;
     } 
-
+    setIsClicked(true);
     let bookingDetails;
     let totalAmount = 0; //I added this
     if (state?.path === 'cart') {
@@ -572,7 +573,6 @@ const handleDelete = async (ids) => {
               </Typography>
             </Box>
             <Button
-              // onClick={handleCheckout}
               onClick={handleProceedToPayment}
               variant="contained"
               sx={{
@@ -582,7 +582,7 @@ const handleDelete = async (ids) => {
                 backgroundColor: theme.palette.primary.main,
                 color: "white",
               }}
-              disabled={!isChecked}
+              disabled={isClicked || !isChecked}
             >
               Pay Now
             </Button>
