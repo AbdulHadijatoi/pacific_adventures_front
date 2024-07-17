@@ -5,13 +5,14 @@ import { useSelector } from "react-redux";
 import BookingDetails from './BookingDetails';
 import Cookies from 'js-cookie';
 import { UpdateBookingStatus } from '../../store/actions/categoriesActions';
-import { useSnackbar } from "notistack";
+import { useDispatch, useSnackbar } from "notistack";
 
 const Booking_Info = ({ activeStep }) => {
   const [data, setData] = useState(null);
   const token = useSelector((state) => state?.auth?.token);
   const { enqueueSnackbar } = useSnackbar();
-
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     const cookieData = Cookies.get('bookingDetails');
     if (cookieData) {
