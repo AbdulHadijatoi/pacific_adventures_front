@@ -15,6 +15,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import { Link } from "react-router-dom";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import PinterestIcon from "@mui/icons-material/Pinterest";
+// import TikTokIcon from "@mui/icons-material/Tiktok";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { FaWhatsapp } from "react-icons/fa";
@@ -65,28 +66,28 @@ const currentYear = new Date().getFullYear();
 
 
 
-                <a href="https://www.facebook.com/pacific-adventuresofficial" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.facebook.com/pacificadventuresdubai" target="_blank" rel="noopener noreferrer">
                   <FacebookIcon sx={{ color: 'white' }} />
                 </a>
 
-                <a href="https://www.linkedin.com/company/pacific-adventures" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/company/pacificadventures/" target="_blank" rel="noopener noreferrer">
                   <LinkedInIcon sx={{ color: 'white' }} />
                 </a>
 
-                <a href="https://www.instagram.com/pacific-adventures/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/pacificadventuresdubai" target="_blank" rel="noopener noreferrer">
                   <InstagramIcon sx={{ color: 'white' }} />
                 </a>
-                <a href="https://twitter.com/pacific-adventures" target="_blank" rel="noopener noreferrer">
-                  <TwitterIcon sx={{ color: 'white' }} />
-                </a>
+                {/* <a href="https://twitter.com/pacificadventures" target="_blank" rel="noopener noreferrer">
+                  <TikTokIcon sx={{ color: 'white' }} />
+                </a> */}
 
 
-                <a href="https://www.youtube.com/@pacific-adventures" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.youtube.com/@PacificAdventuresdubai" target="_blank" rel="noopener noreferrer">
                   <YouTubeIcon sx={{ color: 'white' }} />
                 </a>
-                <a href="https://www.pinterest.com/pacific-adventures/" target="_blank" rel="noopener noreferrer">
+                {/* <a href="https://www.pinterest.com/pacific-adventures/" target="_blank" rel="noopener noreferrer">
                   <PinterestIcon sx={{ color: 'white' }} />
-                </a>
+                </a> */}
               </Box>
             </Grid>
 

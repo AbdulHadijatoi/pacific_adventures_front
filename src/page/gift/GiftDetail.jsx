@@ -5,10 +5,13 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import ReCaptcha from '../../components/Recaptcha/ReCaptcha';
 import Cookies from 'js-cookie';
-import Page from '../../components/page'
+import Page from '../../components/page';
+import { loadStripe } from "@stripe/stripe-js";
 
+
+const stripePromise = loadStripe("pk_test_qblFNYngBkEdjEZ16jxxoWSM");
 const GiftDetail = ({ ac_data }) => {
-
+  const [isClicked, setIsClicked] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
   const [discountPrice, setDiscountPrice] = useState('');
   const [recipientEmail, setRecipientEmail] = useState('');
@@ -16,6 +19,15 @@ const GiftDetail = ({ ac_data }) => {
   const [readMore, setReadMore] = useState(false);
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const encodeString = (str) => {
+    return encodeURIComponent(btoa(str));
+  };
+  
+  // Decode
+  const decodeString = (encodedStr) => {
+    return atob(decodeURIComponent(encodedStr));
+  };
 
   const toggleDescription = () => {
     setIsExpanded(!isExpanded);
@@ -26,18 +38,80 @@ const GiftDetail = ({ ac_data }) => {
 
   const handleBuyNow = () => {
     const dataObject = {
-      discount_price: discountPrice,
+      discountPrice: discountPrice,
       description: description,
-      recipient_email: recipientEmail,
+      recipientEmail: recipientEmail,
+      code: generateRandomString(),
+      acData: ac_data,
     };
 
     if (selectedValue === 'yes') {
       dataObject.activity_id = ac_data.id;
     }
-
+    
     const dataString = JSON.stringify(dataObject);
-    Cookies.set('gift_data', dataString);
-    navigate('/gift-pay');
+    localStorage.setItem('gift_details', dataString);
+    // Cookies.set('gift_data', dataString);
+    // console.log(dataString);
+    // navigate('/gift-pay');
+    // return;
+    openStripeGatewayPage(dataString);
+  };
+
+  
+
+  const openStripeGatewayPage = async (dataString) => {
+    try {
+        const stripe = await stripePromise;
+  
+        if (!dataString) {
+            throw new Error("Gift data not found!");
+        }
+  
+        const totalAmount = JSON.parse(dataString)?.discountPrice;
+        const giftCode = JSON.parse(dataString)?.code;
+
+        if (!totalAmount) {
+          throw new Error("Total amount is missing from booking details");
+        }
+        const encodedGiftCode = encodeString(giftCode + 'hadi');
+        const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": `Bearer sk_test_26PHem9AhJZvU623DfE1x4sd`
+            },
+            body: new URLSearchParams({
+                "payment_method_types[]": "card",
+                "line_items[0][price_data][currency]": "aed",
+                "line_items[0][price_data][product_data][name]": "Gift Discount Amount",
+                "line_items[0][price_data][unit_amount]": (totalAmount * 100), // Amount in cents
+                "line_items[0][quantity]": "1",
+                "mode": "payment",
+                "success_url": `${window.location.origin}/gift-payment-info/${encodedGiftCode}`,
+                "cancel_url": `${window.location.origin}/payment-error`
+            })
+        });
+  
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error(`Error creating Stripe session: ${response.statusText}`, errorData);
+            throw new Error(`Error creating Stripe session: ${errorData.error.message}`);
+        }
+  
+        const session = await response.json();
+  
+        // Redirect to Stripe Checkout
+        const result = await stripe.redirectToCheckout({
+            sessionId: session.id,
+        });
+  
+        if (result.error) {
+            console.error(result.error.message);
+        }
+    } catch (error) {
+        console.error("Error in openStripeGatewayPage:", error.message);
+    }
   };
 
   const textFieldStyle = {
@@ -63,6 +137,16 @@ const GiftDetail = ({ ac_data }) => {
   const handleDiscountClick = (value) => {
     setDiscountPrice(value);
   }
+
+  const generateRandomString = (length = 6) => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  };
   return (
     <Page title='Gift Card | Pacific Adventures'>
       <Box>

@@ -322,6 +322,7 @@ import UnAuthDetail from "./page/Help_Page/UnAuthDetail";
 import GenerateCheckoutInvoice from "./page/PaymentDeatils/GenerateCheckoutInvoice";
 import ErrorPage from "./components/ErrorBoundary/components/ErrorPage";
 import PaymentErrorPage from "./page/PaymentDeatils/PaymentErrorPage"; // Import the new component
+import GiftPaymentInfo from "./page/gift/GiftPaymentInfo"; // Import the new component
 
 export default function Router() {
   const dispatch = useDispatch();
@@ -399,6 +400,7 @@ export default function Router() {
     { path: getMatchedRouteForPath("/preview-card").route, element: <PreviewCard nameProp={getMatchedRouteForPath("/preview-card").nameProp} /> },
     { path: getMatchedRouteForPath("/payment-help").route, element: <UnAuthDetail nameProp={getMatchedRouteForPath("/payment-help").nameProp} /> },
     { path: getMatchedRouteForPath("/payment-error").route, element: <PaymentErrorPage /> }, // Add this line
+    { path: getMatchedRouteForPath("/gift-payment-info/:code").route, element: <GiftPaymentInfo /> }, // Add this line
   ]);
 
   return element;

@@ -142,7 +142,7 @@ const dispatch =  useDispatch()
                         </TableHead>
                         <TableBody>
                             {seatData.map((row, index) => (
-                                <TableRow key={index} sx={{ '&:first-of-type': { backgroundColor: '#fff5f3' } }}>
+                                <TableRow key={index} sx={{ '&:first-of-type': { backgroundColor: '#fbe0ce' } }}>
                                     <TableCell>{row.seatType}</TableCell>
                                     <TableCell>{row.applicableFor}</TableCell>
                                     <TableCell>{row.vehicles}</TableCell>

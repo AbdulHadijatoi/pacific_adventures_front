@@ -186,12 +186,15 @@ const booking = async () => {
   try {
       const res = await dispatch(Booking(bookingDetails, token));
       const bookingNumber = res?.data?.payload?.reference_id;
+      const email = res?.data?.payload?.email;
 
       // setBookingNum(bookingNumber);
       localStorage.setItem('bookingNumber', bookingNumber);
+      localStorage.setItem('customer_email', email);
       // enqueueSnackbar('Booking successful!', { variant: 'success' });
       localStorage.removeItem('addCartData');
       handleDelete(ids);
+      
       openStripeGatewayPage()
   } catch (error) {
       console.error('Error in booking:', error);

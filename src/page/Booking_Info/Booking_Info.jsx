@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import Page from '../../components/page';
 import { useDispatch, useSelector } from "react-redux";
@@ -12,24 +12,29 @@ const Booking_Info = ({ activeStep }) => {
   const token = useSelector((state) => state?.auth?.token);
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
+  const hasCalledApi = useRef(false);  // Ref to track if API call has been made
 
   useEffect(() => {
     const cookieData = Cookies.get('bookingDetails');
     if (cookieData) {
       setData(JSON.parse(cookieData));
     }
-    updateStatus();
+    if (!hasCalledApi.current){
+      updateStatus();
+      hasCalledApi.current = true; 
+    } 
   }, [activeStep]);
 
   const updateStatus = async () => {
     const reference_id = localStorage.getItem('bookingNumber');
+    const email = localStorage.getItem('customer_email');
     if(reference_id == null){
       enqueueSnackbar('Booking processed already!', { variant: 'error' });
       window.location = '/';
     }
     console.log("reference_id",reference_id);
     try {
-        const res = await dispatch(UpdateBookingStatus(reference_id));
+        const res = await dispatch(UpdateBookingStatus(reference_id, email));
         // REMOVE LOCALSTORAGE DATA:BEGINS
         const tokenValue = localStorage.getItem('token');
         localStorage.clear();

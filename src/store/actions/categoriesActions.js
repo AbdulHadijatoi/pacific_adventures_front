@@ -62,7 +62,8 @@ export const getActivities = () => async (dispatch) => {
 
 export const Send_Gift = (body) => async (dispatch) => {
   try {
-    const res = await api.post("user/send/giftCard", body);
+    const endpoint = "send/giftCard";
+    const res = await api.post(endpoint, body);
     dispatch({
       type: "SEND_GIFT",
       payload: res.data,
@@ -73,11 +74,11 @@ export const Send_Gift = (body) => async (dispatch) => {
   }
 };
 
-export const UpdateBookingStatus = (reference_id) => async (dispatch) => {
+export const UpdateBookingStatus = (reference_id, email) => async (dispatch) => {
   try {
     const endpoint = "status/booking/"+ reference_id;
 
-    const res = await api.post(endpoint,{status: "success"});
+    const res = await api.post(endpoint,{status: "success",'email': email});
     dispatch({
       type: "BOOKING",
       payload: res.data,
