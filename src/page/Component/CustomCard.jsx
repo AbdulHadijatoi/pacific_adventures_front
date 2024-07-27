@@ -108,7 +108,7 @@ const CustomCard = () => {
 
               <Box
                 p={2}
-                sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
+                sx={{ width: "100%", display: "flex", flexDirection: "column", gap: "10px" }}
               >
                 <Typography
                   sx={{
@@ -125,12 +125,14 @@ const CustomCard = () => {
                     textOverflow: "ellipsis",
                     maxHeight: "4.5rem",
                     lineHeight: "1.5rem",
+                    width:"100%"
                   }}
                 >
                   {val.name}
                 </Typography>
 
-                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+
+                <Box sx={{ width: "90%", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 
                   <Typography sx={{ fontSize: "0.75rem", color: "grey" }}>
                     Per person Price
@@ -169,7 +171,6 @@ const CustomCard = () => {
                   </Box>
 
                 </Box>
-
               </Box>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start', paddingLeft: '15px' }}>
                 <Typography sx={{ fontSize: '0.7rem' }}>{val?.reviews?.length} Reviews</Typography>

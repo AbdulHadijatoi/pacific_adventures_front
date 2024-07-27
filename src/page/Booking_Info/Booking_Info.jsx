@@ -16,8 +16,9 @@ const Booking_Info = ({ activeStep }) => {
 
   useEffect(() => {
     const cookieData = Cookies.get('bookingDetails');
+    const data = localStorage.getItem('bookingDetails');
     if (cookieData) {
-      setData(JSON.parse(cookieData));
+      setData(JSON.parse(data));
     }
     if (!hasCalledApi.current){
       updateStatus();
@@ -28,19 +29,19 @@ const Booking_Info = ({ activeStep }) => {
   const updateStatus = async () => {
     const reference_id = localStorage.getItem('bookingNumber');
     const email = localStorage.getItem('customer_email');
-    if(reference_id == null){
-      enqueueSnackbar('Booking processed already!', { variant: 'error' });
-      window.location = '/';
-    }
+    // if(reference_id == null){
+    //   enqueueSnackbar('Booking processed already!', { variant: 'error' });
+    //   window.location = '/';
+    // }
     console.log("reference_id",reference_id);
     try {
         const res = await dispatch(UpdateBookingStatus(reference_id, email));
         // REMOVE LOCALSTORAGE DATA:BEGINS
-        const tokenValue = localStorage.getItem('token');
-        localStorage.clear();
-        if (tokenValue) {
-            localStorage.setItem('token', tokenValue);
-        }
+        // const tokenValue = localStorage.getItem('token');
+        // localStorage.clear();
+        // if (tokenValue) {
+        //     localStorage.setItem('token', tokenValue);
+        // }
         // REMOVE LOCALSTORAGE DATA:ENDS
     } catch (error) {
         console.error('Error in booking:', error);

@@ -64,6 +64,7 @@ const PaymentDetailsMain = () => {
   useEffect(() => {
     // Save the current location to previousLocation on every location change
     setPreviousLocation(location);
+    localStorage.removeItem('vc');
   }, [location]);
 
   useEffect(() => {

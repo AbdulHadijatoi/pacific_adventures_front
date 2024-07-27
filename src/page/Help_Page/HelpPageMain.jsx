@@ -79,7 +79,7 @@ the booking process.`,
       <Page title={nameProp}>
         <Box
           sx={{
-            backgroundColor: "#ffc0b3",
+            backgroundColor: "#f6ce98",
             height: "50vh",
           }}
         >

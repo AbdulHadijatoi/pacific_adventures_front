@@ -22,10 +22,11 @@ import { useSnackbar } from "notistack";
 import Loader from "../../components/Loader/Loader";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
-  console.log(total)
-  const { enqueueSnackbar } = useSnackbar();
+const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData, voucherDiscount, onApplyVoucher }) => {
 
+  const { enqueueSnackbar } = useSnackbar();
+  const [voucher, setVoucher] = useState('');
+  const [discount, setDiscount] = useState(0);
   const [voucherCode, setVoucherCode] = useState("");
   const [discountError, setDiscountError] = useState(null);
   const [isFieldEnabled, setIsFieldEnabled] = useState(false);
@@ -38,32 +39,49 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
   const totalBooking = JSON.parse(localStorage.getItem("bookingDetails") || "{}");
   console.log(state)
   const auth = useSelector((state) => state?.auth?.isAuthenticated);
+  
+  const handleVoucherChange = (e) => {
+    setVoucher(e.target.value);
+  };
+  
   const handleVoucherApply = async () => {
     setLoading(true);
     try {
+      const vc = localStorage.getItem('vc');
+      if(vc){
+        if(vc == voucherCode){
+          enqueueSnackbar("Error applying voucher", { variant: "error" });
+          return;
+        }
+      }
       const res = await dispatch(Apply_Voucher(voucherCode));
       if (res.data.success) {
         setLoading(false);
+        localStorage.setItem('vc',voucherCode);
         const price = parseFloat(res.data.payload.price);
         const discountAmount = Math.abs(price);
         setDiscountError(null);
         setIsFieldEnabled(true);
 
-        //         const checkdate = bookingDetails.total_amount < discountAmount;
-        // console.log('voucher can be apply due to less packgr price',checkdate)
-
         enqueueSnackbar("Voucher Applied Successfully", { variant: "success" });
         const bookingDetails = JSON.parse(localStorage.getItem("bookingDetails"));
         const information = JSON.parse(Cookies.get("information"));
+        if(bookingDetails){
+          const updatedTotalAmount = bookingDetails.total_amount - discountAmount;
+          bookingDetails.total_amount = updatedTotalAmount;
+          if(information){
+            information.total_amount = updatedTotalAmount;
+          }
+          localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
+          Cookies.set("information", JSON.stringify(information));
+        }
 
-        const updatedTotalAmount = bookingDetails.total_amount - discountAmount;
-        bookingDetails.total_amount = updatedTotalAmount;
-        information.total_amount = updatedTotalAmount;
-
-        localStorage.setItem("bookingDetails", JSON.stringify(bookingDetails));
-        Cookies.set("information", JSON.stringify(information));
-
-        setTotalAmount(updatedTotalAmount);
+        data1.total_amount = data1.total_amount - discountAmount;
+        
+        
+        setDiscount(discountAmount);
+        onApplyVoucher(discountAmount);
+        // setTotalAmount(updatedTotalAmount);
       } else {
         setLoading(false);
         setDiscountError(res.data.message);
@@ -73,7 +91,6 @@ const PriceCard = ({ data1, activeStep, total, setTotalAmount, cartData }) => {
       setLoading(false);
       console.error("Error applying voucher:", error);
       const errorMessage = error.response?.data?.message;
-      // || "Error applying voucher. Please try again later.";
       setDiscountError(errorMessage);
       enqueueSnackbar(errorMessage, { variant: "error" });
     }

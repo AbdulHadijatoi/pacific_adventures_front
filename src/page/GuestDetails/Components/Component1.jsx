@@ -30,6 +30,10 @@ import { deleteCart } from "../../../store/actions/cartActions";
 
 const stripePromise = loadStripe("pk_test_qblFNYngBkEdjEZ16jxxoWSM");
 const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
+  const [voucherDiscount, setVoucherDiscount] = useState(0);
+  const handleVoucherApply = (discount) => {
+    setVoucherDiscount(discount);
+  };
   const [isClicked, setIsClicked] = useState(false);
   const theme = useTheme();
   const [payNow, setPayNow] = useState(false);
@@ -136,32 +140,33 @@ const Component1 = ({ data, onNext, data1, activeStep, cartData }) => {
     setIsClicked(true);
     let bookingDetails;
     let totalAmount = 0; //I added this
+    
     if (state?.path === 'cart') {
       const { date, adult, child, infant, total_amount, id, package_details, activity_name } = cartData;
       bookingDetails = {
         ...formValues,
         activity_name: dete?.activity_name,
         date: dete?.date,
-        total_amount: dete?.total_amount,
+        total_amount: dete?.total_amount - voucherDiscount,
         status: "pending",
         payment: 'failed',
         reference_id: generateRandomString(),
         package_details: cartData,
       };
-      totalAmount = dete?.total_amount;//I added this
+      totalAmount = dete?.total_amount - voucherDiscount;
     } else {
       bookingDetails = {
         ...formValues,
         activity_name: data?.name,
         date: data?.date,
-        total_amount: data?.total_amount,
+        total_amount: data?.total_amount - voucherDiscount, 
         status: "pending",
         payment: 'failed',
         reference_id: generateRandomString(),
         package_details: [data?.package],
       };
 
-      totalAmount = data?.total_amount;//I added this
+      totalAmount = data?.total_amount - voucherDiscount;
     }
 
     localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
@@ -593,7 +598,7 @@ const handleDelete = async (ids) => {
 
         </Grid>
         <Grid item lg={4}>
-          <PriceCard data1={data1} activeStep={activeStep} cartData={cartData} />
+          <PriceCard data1={data1} activeStep={activeStep} cartData={cartData} voucherDiscount={voucherDiscount} onApplyVoucher={handleVoucherApply} />
         </Grid>
       </Grid>
       <TermsModal isOpen={isModalOpen} onClose={handleModalClose} />
