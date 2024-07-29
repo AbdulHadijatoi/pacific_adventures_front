@@ -45,7 +45,7 @@ const dispatch = useDispatch()
             <Typography sx={{
                 fontSize: isSmall ? '25px' : '48px', fontWeight: 500,
             }}>
-                Do More with pacific-adventures.com
+                Find your best local Experience
             </Typography>
             <Typography sx={{ fontSize: '17px', width: isSmall ? '100%' : '60%', }}>
                 Choose from our curated selection of activities, including desert tours, adventures, city tours, yacht
@@ -57,9 +57,9 @@ const dispatch = useDispatch()
             </Box>
             <Box sx={{ position: 'fixed', bottom: 20, left: 30, display: 'flex', alignItems: 'center', zIndex: 9999 }}>
                 <Button onClick={() => navigate(AllMenus[13]?.route)} variant='contained' sx={{
-                    backgroundColor: '#FBD107',
+                    backgroundColor: '#832d14',
                     textTransform: 'none',
-                    color: "#000",
+                    color: "#FFF",
                     fontWeight: 600,
                     paddingTop: '10px',
                     transform: 'rotate(-90deg)',

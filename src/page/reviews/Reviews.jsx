@@ -11,23 +11,21 @@ const Reviews = ({ nameProp }) => {
     return (
         <Page title={nameProp}>
             <Grid container spacing={2} sx={{ mt: 7, mb: 7, padding: ' 20px 5%' }}>
-                <Grid item xs={12} sm={2} display="flex" justifyContent="center">
-                    <img src="/reviewLeft.png" alt="" width={imageWidth} />
-                </Grid>
-                <Grid item xs={12} sm={8} display="flex" flexDirection="column" alignItems="center">
+                
+                <Grid item display="flex" flexDirection="column" alignItems="center" sx={{margin: 'auto'}}>
                     <Typography sx={{ fontSize: isSmall ? '1rem' : '2rem', fontWeight: 600, textAlign: 'center' }}>
                         Where would you like to write a review?
                     </Typography>
                     <Grid container spacing={2} justifyContent="center" sx={{ paddingTop: '10px', display: 'flex', alignItems: 'center' }}>
                         <Grid item>
-                            <Link to='https://g.page/r/Cee91tzznq9EEBI/review' target='_blank'>
+                            <Link to='https://g.page/r/CYIcFLQ85zrXEAE/review' target='_blank'>
                                 <Box display="flex" justifyContent="center">
                                     <img src="/googlee.webp" alt="" width={imageWidth} />
                                 </Box>
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link to='#' target='_blank'>
+                            <Link to='https://www.tripadvisor.com/UserReviewEdit-g295424-d24937588-Pacific_Adventures-Dubai_Emirate_of_Dubai.html' target='_blank'>
                                 <Box display="flex" justifyContent="center">
                                     <img src="/tripadvisor-removebg-preview.png" alt="" width={imageWidth} />
                                 </Box>
@@ -42,9 +40,7 @@ const Reviews = ({ nameProp }) => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} sm={2} display="flex" justifyContent="center">
-                    <img src="/reviewRight.png" alt="" width={imageWidth} />
-                </Grid>
+                
             </Grid>
         </Page>
     )

@@ -18,7 +18,7 @@ const ChooseUs = () => {
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '15px', padding: "0px 20px" }}>
-            <Typography sx={{  fontWeight: 600,fontSize: isSmall ? '14px' : '26px', }}>Why Book with Book Pacific Adventures?</Typography>
+            <Typography sx={{  fontWeight: 600,fontSize: isSmall ? '14px' : '26px', }}>Why Book with Pacific Adventures?</Typography>
             {/* <Typography sx={{ color: theme.palette.primary.textPrimary, textAlign: 'center', fontSize:'14px' }}>Experience the thrill of discovering off-the-beaten-path gems and famous landmarks in top
             destinations worldwide - your wanderlust awaits!</Typography> */}
             <Box style={{ padding: isSmall ? '30px 17px' : '0px 6%'}}>

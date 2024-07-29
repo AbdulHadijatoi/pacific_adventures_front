@@ -157,11 +157,9 @@ const currentYear = new Date().getFullYear();
                 </Box>
                 <Typography
                   variant="h3"
-                  sx={{ fontSize: "0.8rem", marginTop: "1rem", textAlign: 'justify' }}
+                  sx={{ fontSize: "0.8rem", marginTop: "1rem", textAlign: 'center' }}
                 >
-                  Welcome to pacific-adventures.com, Pacific Adventures deals and packages at the best price
-
-                  official Pacific Adventures experience booking website in UAE.
+                  We are committed to deliver the highest quality standards of service, offering experiences in which every detail has been taken care of for our guests.
                 </Typography>
               </Box>
 
@@ -169,7 +167,7 @@ const currentYear = new Date().getFullYear();
               <Box
                 sx={{
                   display: "flex",
-                  justifyContent: "start",
+                  justifyContent: "center",
                   alignItems: "start",
                   marginTop: "1rem",
                 }}
@@ -181,7 +179,7 @@ const currentYear = new Date().getFullYear();
                 <img src="/stripe.png" alt="" />
               </Box>
             </Grid>
-            <Grid item lg={1.7} md={1.8} sm={12} xs={12}>
+            <Grid item lg={3} md={3} sm={12} xs={12}>
               <Typography
                 sx={{
                   fontSize: "1rem",
@@ -189,7 +187,7 @@ const currentYear = new Date().getFullYear();
                   marginBottom: "0.9rem",
                 }}
               >
-                About Us
+                What We Do
               </Typography>
               <Typography
                 sx={{
@@ -239,28 +237,6 @@ const currentYear = new Date().getFullYear();
                 </MuiLink>
               </Typography>
 
-              <Typography
-                sx={{
-                  color: 'grey',
-                  fontSize: "0.9rem",
-                  marginBottom: "0.9rem",
-                  textTransform: "none",
-                }}
-              >
-                <MuiLink
-                  component={Link}
-                  to={routes[14]?.route}
-
-                  sx={{
-
-                    textDecoration: "none",
-                    color: "inherit",
-                    "&:hover": { textDecoration: "none" },
-                  }}
-                >
-                  Guidelines
-                </MuiLink>
-              </Typography>
 
 
               <Typography
@@ -286,10 +262,32 @@ const currentYear = new Date().getFullYear();
                   Contact Us
                 </MuiLink>
               </Typography>
+              <Typography
+                  sx={{
+                    color: 'grey',
+                    fontSize: "0.9rem",
+                    marginBottom: "0.9rem",
+                    textTransform: "none",
+                  }}
+                >
+                  <MuiLink
+                    component={Link}
+                    // to="/blogs"
+                  to={routes[7]?.route}
 
+                    sx={{
+
+                      textDecoration: "none",
+                      color: "inherit",
+                      "&:hover": { textDecoration: "none" },
+                    }}
+                  >
+                    Blogs
+                  </MuiLink>
+                </Typography>
             </Grid>
 
-            <Grid item lg={2} md={1.8} sm={12} xs={12}>
+            <Grid item lg={3} md={3} sm={12} xs={12}>
               <Typography
                 sx={{
                   fontSize: "1rem",
@@ -325,7 +323,7 @@ const currentYear = new Date().getFullYear();
               </Box>
 
 
-              <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center', mt: 2, width: '10px' }}>
+              <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center', mt: 2 }}>
                 <EmailOutlinedIcon style={{ color: 'grey', fontSize: '20px' }} />
 
                 <Box>
@@ -345,59 +343,8 @@ const currentYear = new Date().getFullYear();
 
             </Grid>
 
-            <Grid item lg={1.7} md={1.8} sm={12} xs={12}>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "start",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: "1rem",
-                    fontWeight: "700",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  What We Do
-                </Typography>
-                <Typography sx={{ fontSize: "0.9rem", marginBottom: "0.9rem", color: 'grey' }}>
-                  Experience Dubai
-                </Typography>
-                <Typography sx={{ fontSize: "0.9rem", marginBottom: "0.9rem", color: 'grey' }}>
-                  Corporate
-                </Typography>
-                <Typography
-                  sx={{
-                    color: 'grey',
-                    fontSize: "0.9rem",
-                    marginBottom: "0.9rem",
-                    textTransform: "none",
-                  }}
-                >
-                  <MuiLink
-                    component={Link}
-                    // to="/blogs"
-                  to={routes[7]?.route}
-
-                    sx={{
-
-                      textDecoration: "none",
-                      color: "inherit",
-                      "&:hover": { textDecoration: "none" },
-                    }}
-                  >
-                    Blogs
-                  </MuiLink>
-                </Typography>
-
-
-
-              </Box>
-            </Grid>
-            <Grid item lg={1.8} md={1.8} sm={12} xs={12}>
+            
+            <Grid item lg={3} md={3} sm={12} xs={12}>
               <Typography
                 sx={{
                   fontSize: "1rem",
@@ -454,32 +401,30 @@ const currentYear = new Date().getFullYear();
                 </MuiLink>
               </Typography>
 
-              <Typography sx={{ fontSize: "0.9rem", marginBottom: "0.9rem", color: 'grey' }}>
-                Cookie Policy
-              </Typography>
-              <Typography sx={{ fontSize: "0.9rem", marginBottom: "0.9rem", color: 'grey' }}>
-                Site Map
-              </Typography>
-            </Grid>
+              
 
-            <Grid item lg={1.8} md={1.8} sm={12} xs={12}>
               <Typography
                 sx={{
-                  fontSize: "1rem",
-                  fontWeight: "700",
+                  color: 'grey',
+                  fontSize: "0.9rem",
                   marginBottom: "0.9rem",
+                  textTransform: "none",
                 }}
               >
-                Mobile
+                <MuiLink
+                  component={Link}
+                  to={routes[14]?.route}
+
+                  sx={{
+
+                    textDecoration: "none",
+                    color: "inherit",
+                    "&:hover": { textDecoration: "none" },
+                  }}
+                >
+                  Guidelines
+                </MuiLink>
               </Typography>
-
-              <Box>
-                <img src="/appstore.png" alt="App Store" height={'auto'} width={'100px'} />
-              </Box>
-
-              <Box sx={{ marginTop: "1rem" }}>
-                <img src="/googleplay.png" alt="App Store" height={'auto'} width={'100px'} />
-              </Box>
             </Grid>
           </Grid>
         </Box>
