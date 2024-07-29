@@ -82,9 +82,7 @@ const BlogCard = () => {
                                         <Typography gutterBottom variant="h5" component="div" sx={{ marginTop: '1rem', fontWeight: '600', fontSize: '1rem' }}>
                                             {val.title}
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary" sx={descriptionStyle}>
-                                            {val.description}
-                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" sx={descriptionStyle} dangerouslySetInnerHTML={{ __html: val.description }}/>
                                         <Box sx={{ display: 'flex', alignItems: 'end', justifyContent: 'end', marginTop: '1rem' }}>
                                             <Button onClick={() => navigate(`/blog-detail/${val.id}`)} size="small" variant='contained' sx={{ textTransform: 'none' }}>Read More <ArrowForwardIcon /></Button>
                                         </Box>
