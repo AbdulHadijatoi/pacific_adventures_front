@@ -97,8 +97,8 @@ the booking process.`,
             <Box minHeight={"3rem"} width="70%">
               <img src="/helpicon.png" alt="icon" />
 
-              <Typography
-                sx={{
+              <h1
+                style={{
                   color: "black",
                   cursor: "pointer",
                   fontSize: "25px",
@@ -106,7 +106,7 @@ the booking process.`,
                 }}
               >
                 Hello How Can we help you?
-              </Typography>
+              </h1>
 
 
 <Grid container spacing={2}>

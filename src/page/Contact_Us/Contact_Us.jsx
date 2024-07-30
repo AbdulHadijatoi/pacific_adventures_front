@@ -61,6 +61,7 @@ const Contact_Us = ({nameProp}) => {
         enqueueSnackbar('Messaage Sent ', {
           variant: "success",
         });
+        window.location = '/thank-you';
         setLoading(false);
       })
       .catch((err) => {
@@ -96,9 +97,9 @@ const Contact_Us = ({nameProp}) => {
     <Page title={nameProp}>
       <Overlay title="Contact Us" imageUrl={about} />
       <Box sx={{ p: is_sm ? 2 : 5 }}>
-        <Typography fontWeight="bold" variant="h5" textAlign="center">
+        <h1 style={{textAlign: 'center'}}>
           Get In Touch
-        </Typography>
+        </h1>
 
         <Grid container spacing={3} padding="0rem 3%">
           <Grid item lg={4} md={4} sm={12} xs={12}>

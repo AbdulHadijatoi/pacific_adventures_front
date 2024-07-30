@@ -59,7 +59,7 @@ const PkgCard = ({ data, categories, ind }) => {
       image_url: `${base}${data?.image_url}`
     };
     Cookies.set('BookingImage', JSON.stringify(bookingData), { expires: farFutureDate });
-    navigate(`/${data.slug}`);
+    navigate(`/things-to-do-in-dubai/${data.slug}`);
   };
 
   const handleFavoriteClick = (activityId, activityData) => {
@@ -163,8 +163,8 @@ const PkgCard = ({ data, categories, ind }) => {
         <Typography color="textSecondary" component="div" sx={{ fontSize: '12px' }}>
           {subCategory}
         </Typography>
-        <Typography gutterBottom variant="h5" component="div" sx={{ fontSize: '1rem', fontWeight: '700' }}>
-          {truncateName(data?.name)}
+        <Typography gutterBottom variant="h5" component="div" sx={{ WebkitLineClamp: 2, fontSize: '1rem', fontWeight: '700' }}>
+          {data?.name}
         </Typography>
         {/* <Typography sx={descriptionStyle}>{data?.description}</Typography> */}
         <Box

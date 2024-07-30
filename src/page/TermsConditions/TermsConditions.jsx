@@ -50,7 +50,13 @@ const TermsConditions = ({nameProp}) => {
         >
           Terms & Conditions
         </Typography> */}
-
+        <h1 style={{
+            fontSize: "1.3rem",
+            fontWeight: "600",
+            color: '#832d14',
+          }}>
+          Terms & Conditions
+        </h1>
         <Typography sx={{ color: "grey", marginTop: "1rem" , fontSize:'13px' }}>
           Thank you for choosing our tour packages. By booking a trip through
           our website, you´re deemed to have agreed to its terms of use. Please

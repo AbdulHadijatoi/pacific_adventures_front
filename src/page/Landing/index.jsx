@@ -16,7 +16,12 @@ import { getPopularActivities } from "../../store/actions/categoriesActions";
 import { useDispatch } from "react-redux";
 import { getFindUs, getHomeImage } from "../../store/actions/setting";
 import { getMenus } from "../../store/actions/authActions";
+
+
+
 const Landing = ({nameProp}) => {
+  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -42,6 +47,7 @@ const Landing = ({nameProp}) => {
       <Page title={nameProp}>
         <div style={{ display: "flex", flexDirection: "column", gap: "50px" }}>
           <Header />
+          
 
           <ChooseUs />
           <Popular />

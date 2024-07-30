@@ -237,8 +237,6 @@ const currentYear = new Date().getFullYear();
                 </MuiLink>
               </Typography>
 
-
-
               <Typography
                 sx={{
                   color: 'grey',
@@ -249,8 +247,7 @@ const currentYear = new Date().getFullYear();
               >
                 <MuiLink
                   component={Link}
-                  // to="/contact-us"
-                  to={routes[6]?.route}
+                  to="/things-to-do-in-dubai"
 
                   sx={{
 
@@ -259,9 +256,11 @@ const currentYear = new Date().getFullYear();
                     "&:hover": { textDecoration: "none" },
                   }}
                 >
-                  Contact Us
+                  Things To Do In Dubai
                 </MuiLink>
               </Typography>
+
+              
               <Typography
                   sx={{
                     color: 'grey',
@@ -323,7 +322,7 @@ const currentYear = new Date().getFullYear();
               </Box>
 
 
-              <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center', mt: 2 }}>
+              <Box sx={{ marginBottom: "0.9rem", display: 'flex', gap: '5px', alignItems: 'center', mt: 2 }}>
                 <EmailOutlinedIcon style={{ color: 'grey', fontSize: '20px' }} />
 
                 <Box>
@@ -337,7 +336,20 @@ const currentYear = new Date().getFullYear();
 
               </Box>
 
+              <Box sx={{ marginBottom: "0.9rem", display: 'flex', gap: '5px', alignItems: 'center', mt: 2 }}>
+                <img src='./contactus.svg' style={{ width: '20px', height: '20px' }} />
 
+                <Box>
+                  
+
+                  <Typography component="a" href={routes[6]?.route} sx={{ fontSize: '12px', color: 'grey', textDecoration:'none' }}>
+                  Contact Us
+                  </Typography>
+
+                </Box>
+
+              </Box>
+              
 
 
 
@@ -425,6 +437,7 @@ const currentYear = new Date().getFullYear();
                   Guidelines
                 </MuiLink>
               </Typography>
+              
             </Grid>
           </Grid>
         </Box>

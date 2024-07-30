@@ -119,6 +119,13 @@ const dispatch =  useDispatch()
 
 
                 <Box sx={{ padding: '10px 5%' }}>
+                <h1 style={{
+                    fontSize: "1.3rem",
+                    fontWeight: "600",
+                    color: '#832d14',
+                }}>
+                Guildlines
+                </h1>
                     {data1.map((val, ind) => (
                         <Box key={ind}>
                             <Typography sx={{ lineHeight: '1.5rem', fontSize: "20px", fontWeight: 700, color: theme.palette.primary.main, marginTop: '1.5rem' }}>{val.title}</Typography>

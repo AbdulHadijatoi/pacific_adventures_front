@@ -30,9 +30,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { IoIosBicycle } from "react-icons/io";
 import { FaChevronRight } from "react-icons/fa6";
 import { PiBuildingsBold } from "react-icons/pi";
+import { FiPhoneCall } from "react-icons/fi";
 import { logout } from "../../store/actions/authActions";
 
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs'; // Adjust the import path as needed
+
 const Navbar = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
   const theme = useTheme();
   const base = 'https://admin.pacific-adventures.com/'
 
@@ -263,145 +269,7 @@ const Navbar = () => {
           </Button>
         ) : (
           <>
-            {/* <Box
-              width={isSmallScreen ? "100%" : "7rem"}
-              marginBottom={isSmallScreen ? "1rem" : "1rem"}
-              sx={{
-                position: "relative",
-                "&:hover > .dropdown-menu": {
-                  display: "block",
-                  opacity: 1,
-                },
-
-              }}
-            >
-              <FormControl fullWidth size="small" variant="standard">
-                <InputLabel
-                  id="demo-simple-select-label"
-                  sx={{ borderBottom: "none", cursor: "pointer" }}
-                >
-                  What We Do
-                </InputLabel>
-              </FormControl>
-
-              <Box
-                className="dropdown-menu"
-                sx={{
-                  display: "none",
-                  position: "absolute",
-                  top: "100%",
-                  left: 0,
-                  backgroundColor: "white",
-                  boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                  zIndex: 1,
-                  width: "max-content",
-                  padding: "1rem",
-                  mt: 3,
-                  zIndex: 10000
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "20px",
-                      padding: "10px 30px",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        gap: "10px",
-                        alignItems: "center",
-                      }}
-                    >
-                      <IoIosBicycle
-                        size={25}
-                        style={{ color: theme.palette.primary.main }}
-                      />
-                      <Typography
-                        sx={{
-                          cursor: "pointer",
-                          fontSize: "16px",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Things To Do
-                      </Typography>
-                      <FaChevronRight
-                        size={20}
-                        style={{ color: theme.palette.primary.main }}
-                      />
-                    </Box>
-                    <Divider />
-                    {data.map((val, ind) => (
-                      <Typography
-                        key={ind}
-                        sx={{ cursor: "pointer" }}
-                        onClick={() => navigate("/desert-safari")}
-                      >
-                        {val.name}
-                      </Typography>
-                    ))}
-                  </Box>
-                  <Box
-                    sx={{ borderLeft: "1px solid #DCDCDC", marginTop: "55px" }}
-                  ></Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "20px",
-                      padding: "10px 30px",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        gap: "10px",
-                        alignItems: "center",
-                      }}
-                    >
-                      <PiBuildingsBold
-                        size={25}
-                        style={{ color: theme.palette.primary.main }}
-                      />
-                      <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
-                        Experience Dubai
-                      </Typography>
-                      <FaChevronRight
-                        size={20}
-                        style={{ color: theme.palette.primary.main }}
-                      />
-                    </Box>
-                    <Divider />
-                    {data1.map((val, ind) => (
-                      <Typography
-                        key={ind}
-                        sx={{ cursor: "pointer" }}
-                        onClick={() => navigate("/desert-safari")}
-                      >
-                        {val.name}
-                      </Typography>
-                    ))}
-                  </Box>
-
-
-                </Box>
-              </Box>
-            </Box> */}
-
             
-
-
-
-
-            {/* ---------------------- */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} gap={4}>
               
 
@@ -924,6 +792,30 @@ const Navbar = () => {
       </Drawer>
       <Divider />
       <AllActivities />
+      <Divider />
+      {!isHomePage && <Breadcrumbs />}
+      <Box sx={{ position: 'fixed', bottom: 5, right: 5, display: {xs: 'flex', md:'none' }, justifyContent: 'cetner', alignItems: 'center', zIndex: 9999 }}>
+          <Button variant='contained' sx={{
+              backgroundColor: '#832d14',
+              textTransform: 'none',
+              color: "#FFF",
+              fontWeight: 600,
+              borderRadius: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '60px',
+              height: '60px',
+              zIndex: 9999
+          }}>
+
+
+          <a href="tel:+971588627171" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <FiPhoneCall style={{ marginTop: '10px', color: 'white', fontSize: '20px' }} />
+          </a>
+
+          </Button>
+      </Box>
     </>
   );
 };

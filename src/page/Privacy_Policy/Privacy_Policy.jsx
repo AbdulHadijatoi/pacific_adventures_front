@@ -65,6 +65,13 @@ const Privacy_Policy = ({nameProp}) => {
     <Page title={nameProp}>
       <Overlay title="Privacy Policy" imageUrl={guidelineimage} />
       <Box sx={{ p: 5 }}>
+      <h1 style={{
+            fontSize: "1.3rem",
+            fontWeight: "600",
+            color: '#832d14',
+          }}>
+          Privacy Policy
+        </h1>
         {/* <Heading>Privacy Policy</Heading> */}
         <Paragraph>
           Pacific Adventures Tourism LLC collects information about its

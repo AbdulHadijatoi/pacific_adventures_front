@@ -51,14 +51,14 @@ const About_Us = ({nameProp}) => {
     <Page title={nameProp}>
       <Overlay title="About Us" imageUrl={header} />
       <Box sx={{ p: 5 }}>
-        <Typography
+        <h1
           variant="h4"
           fontWeight="bold"
           color="primary"
-          sx={{ fontSize: "1.5rem" }}
+          style={{ color: '#832d14',fontSize: "1.5rem", fontWeight: 700 }}
         >
           About Us
-        </Typography>
+        </h1>
 
         <Grid container spacing={2} sx={{ marginTop: "0.1rem" }}>
           <Grid item lg={6} md={7} sm={12} xs={12}>

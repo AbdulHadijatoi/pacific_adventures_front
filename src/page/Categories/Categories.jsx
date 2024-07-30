@@ -391,13 +391,10 @@ flexWrap:'wrap'
 
 
           <img src='/thingstodo.svg' width={'30rem'} />
-          <Typography
-            variant="h4"
-            fontWeight="bold"
-            sx={{ flex: 2, whiteSpace: "nowrap", fontSize: "1rem" }}
-          >
+          <h1 style={{ flex: 2, whiteSpace: "nowrap", fontSize: "1rem" }}
+>
             {activityLength}  Things to do in Dubai
-          </Typography>
+          </h1>
 
           <Box
             sx={{
