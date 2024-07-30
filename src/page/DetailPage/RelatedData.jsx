@@ -49,7 +49,7 @@ const RelatedData = ({ onItemClick }) => {
 
   const handleBookNow = (activityId) => {
 
-    navigate(`/${activityId}`);
+    navigate(`/things-to-do-in-dubai/${activityId}`);
 
     window.scrollTo(0, 0);
 
@@ -105,6 +105,7 @@ const RelatedData = ({ onItemClick }) => {
                     borderRadius: "12px",
                     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                     overflow: "hidden",
+                    height: "48vh",
                     padding: "5px",
                   }}
                 >

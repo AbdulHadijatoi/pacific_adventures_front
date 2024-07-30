@@ -13,10 +13,10 @@ const PaymentErrorPage = () => {
 
                 <EmailOutlinedIcon style={{ color: '#832c13', fontSize: '80px', marginBottom: '20px' }} />
                 <Typography variant="h4" style={{ color: '#832c13', marginBottom: '10px' }}>
-                    Thanks for submitting!
+                    Thank you.
                 </Typography>
                 <Typography variant="body1" style={{ marginBottom: '20px' }}>
-                    Your message has been sent!
+                    A member of the team will get back to you shortly.
                 </Typography>
                 
                 

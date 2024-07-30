@@ -98,7 +98,7 @@ const Contact_Us = ({nameProp}) => {
       <Overlay title="Contact Us" imageUrl={about} />
       <Box sx={{ p: is_sm ? 2 : 5 }}>
         <h1 style={{textAlign: 'center'}}>
-          Get In Touch
+          Contact Us
         </h1>
 
         <Grid container spacing={3} padding="0rem 3%">

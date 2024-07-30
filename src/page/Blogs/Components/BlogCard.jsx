@@ -84,7 +84,7 @@ const BlogCard = () => {
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary" sx={descriptionStyle} dangerouslySetInnerHTML={{ __html: val.description }}/>
                                         <Box sx={{ display: 'flex', alignItems: 'end', justifyContent: 'end', marginTop: '1rem' }}>
-                                            <Button onClick={() => navigate(`/blogs/${val.id}`)} size="small" variant='contained' sx={{ textTransform: 'none' }}>Read More <ArrowForwardIcon /></Button>
+                                            <Button onClick={() => navigate(`/blogs/${val.slug}`)} size="small" variant='contained' sx={{ textTransform: 'none' }}>Read More <ArrowForwardIcon /></Button>
                                         </Box>
                                     </Box>
                                 </Box>
