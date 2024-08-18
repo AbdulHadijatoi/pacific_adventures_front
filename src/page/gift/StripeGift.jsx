@@ -5,7 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import Cookies from "js-cookie";
 import CheckoutGift from "./CheckoutGift";
 
-const stripePromise = loadStripe("pk_test_51Nl5l2Fd4D0x5hm6bNeeGB3OgSp6LVDsHPSthOuzgiygFol7rB4uUG02e2x1DlTyz48BBGenNM6gd0DJWrozE0cj00b7xF7yx3");
+const stripePromise = loadStripe("pk_test_qblFNYngBkEdjEZ16jxxoWSM");
 
 const StripeGift = () => {
 
@@ -14,7 +14,7 @@ const StripeGift = () => {
     // console.log(cookieData, 'jjj');
 
     return (
-        <Elements stripe={stripePromise} options={'sk_test_51Nl5l2Fd4D0x5hm6Nx1OKK0snF9qYjovaDAraLysgglMKBT0lkl4G8PYGEb6xoc5qdovTvRDgGnUXPKG5wMhIKVs00NNF25eXI'}>
+        <Elements stripe={stripePromise} options={'sk_test_26PHem9AhJZvU623DfE1x4sd'}>
             <CheckoutGift />
         </Elements>
     );

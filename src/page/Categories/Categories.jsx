@@ -51,7 +51,7 @@ const Categories = ({nameProp}) => {
         setCategories(initialCategories);
         const categoryIdFromState = state?.categoryId;
         const categoryNameFromState = state?.categoryName;
-
+  
         if (categoryIdFromState || categoryNameFromState) {
           const initialCategory = initialCategories.find(
             (category) =>
@@ -60,7 +60,16 @@ const Categories = ({nameProp}) => {
           );
           setSelectedCategory(initialCategory);
         } else {
-          setSelectedCategory(initialCategories[0]);
+          // Create a new category with all activities from all categories
+          const allActivities = initialCategories.flatMap(category => category.activity || []);
+          const allActivitiesCategory = {
+            id: 'all-activities',
+            name: 'All Activities',
+            activity: allActivities
+          };
+  
+          setCategories([...initialCategories, allActivitiesCategory]);
+          setSelectedCategory(allActivitiesCategory);
         }
         setLoading(false);
       })
@@ -69,7 +78,7 @@ const Categories = ({nameProp}) => {
         console.log(err, "ERRR");
       });
   }, [dispatch, state]);
-
+  
   useEffect(() => {
     if (selectedCategory) {
       const activities = selectedCategory.activity || [];
@@ -84,6 +93,7 @@ const Categories = ({nameProp}) => {
       }
     }
   }, [selectedCategory, selectedSubCategory]);
+  
 
   const handleChange = (event) => {
     setSortCriteria(event.target.value);
@@ -324,7 +334,7 @@ const Categories = ({nameProp}) => {
                               textAlign: 'center'
                             }}
                           >
-                            {val.name}
+                            {val.name} 
                           </Typography>
                         </Box>
                       ))}
@@ -332,7 +342,7 @@ const Categories = ({nameProp}) => {
                   ) : (
                     <Box sx={{ padding: '0rem 8%' }}>
                       <Slider {...settings}>
-                        {categories.map((val, index) => (
+                        {categories.slice(0, -1).map((val, index) => (
                           <Box
                             key={index}
                             onClick={() => handleCategoryClick(val)}

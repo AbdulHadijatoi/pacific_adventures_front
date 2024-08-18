@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPopularActivities } from "../../store/actions/categoriesActions";
 import { useNavigate } from "react-router";
 import Skeleton from "@mui/material/Skeleton"; // Import Skeleton component
+import CardMedia from "@mui/material/CardMedia";
 
 const CustomCard = () => {
   const theme = useTheme();
@@ -87,17 +88,16 @@ const CustomCard = () => {
                 overflow: "hidden",
                 padding: "5px",
                 height: "100%",
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'start',
-                height: "48vh",
+                textAlign: 'start',
                 cursor: 'pointer'
               }}
             >
-              <Box sx={{ position: "relative" }}>
+
+              
+                <Box sx={{ position: "relative" }}>
                 <img
                   src={`https://admin.pacific-adventures.com/storage/uploads/media/${val.image}`}
-                  alt="Header"
+                  alt="Header image"
                   style={{
                     width: "100%",
                     height: "30vh",
@@ -106,6 +106,7 @@ const CustomCard = () => {
                   }}
                 />
               </Box>
+
 
               <Box
                 p={2}

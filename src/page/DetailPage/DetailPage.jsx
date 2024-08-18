@@ -147,41 +147,6 @@ const DetailPage = ({ nameProp }) => {
     return iconsToShow;
   };
 
-  // const renderIconsFromFeatures = () => {
-  //   const iconsToShow = [];
-  //   data1.features.forEach(feature => {
-  //     const matchedItems = infoItems.filter(item => item.text === feature);
-  //     matchedItems.forEach(matchedItem => {
-  //       iconsToShow.push({ icon: matchedItem.icon, text: matchedItem.text });
-  //     });
-  //   });
-
-  //   const operatingHoursItem = infoItems.find(item => item.text === "Operating Hours");
-  //   const freeCancellationItem = infoItems.find(item => item.text === "Free Cancellation 12 Hours Prior");
-
-  //   if (operatingHoursItem) {
-  //     iconsToShow.push({ icon: operatingHoursItem.icon, text: operatingHoursItem.text });
-  //   }
-
-  //   if (freeCancellationItem) {
-  //     iconsToShow.push({ icon: freeCancellationItem.icon, text: freeCancellationItem.text });
-  //   }
-
-  //   return iconsToShow;
-  // };
-  // ------------------------------------------------------
-  // const renderIconsFromFeatures = () => {
-  //   const iconsToShow = [];
-  //   data1.features.forEach(feature => {
-  //     const matchedItems = infoItems.filter(item => item.text === feature);
-  //     matchedItems.forEach(matchedItem => {
-  //       iconsToShow.push({ icon: matchedItem.icon, text: matchedItem.text });
-  //     });
-  //   });
-  //   return iconsToShow;
-  // };
-
-
   const [openAccordion, setOpenAccordion] = useState(null);
 
 
@@ -422,14 +387,12 @@ const DetailPage = ({ nameProp }) => {
                       width: { sm: "100%", md: "80%" },
                     }}
                   >
-                    <Box>
-                      <Typography
-                        sx={{
+                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                      
+                        <h1 style={{
                           fontSize: { xs: "1rem", md: "1.3rem" },
                           fontWeight: 600,
-                        }}
-                      >
-                        {data1.name}
+                        }}>{data1.name}</h1>
 
                         <Rating
                           name="simple-controlled"
@@ -441,7 +404,6 @@ const DetailPage = ({ nameProp }) => {
                           }}
                         />
                         <span style={{ fontSize: '0.9rem', fontWeight: '500' }}>{data1?.reviews?.length} Reviews</span>
-                      </Typography>
 
 
                     </Box>

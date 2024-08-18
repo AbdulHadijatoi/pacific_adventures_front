@@ -22,6 +22,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { FiPhoneCall } from "react-icons/fi";
 import { MdEmail, MdOutlineMailOutline } from "react-icons/md";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import SendIcon from '@mui/icons-material/Send';
 import { useSelector } from "react-redux";
 const Footer = () => {
   const theme = useTheme();
@@ -324,6 +325,7 @@ const currentYear = new Date().getFullYear();
 
               <Box sx={{ marginBottom: "0.9rem", display: 'flex', gap: '5px', alignItems: 'center', mt: 2 }}>
                 <EmailOutlinedIcon style={{ color: 'grey', fontSize: '20px' }} />
+                
 
                 <Box>
                   {/* <Typography sx={{ fontSize: '12px', color: 'grey', }}>info@pacific-adventures.com</Typography> */}
@@ -337,7 +339,7 @@ const currentYear = new Date().getFullYear();
               </Box>
 
               <Box sx={{ marginBottom: "0.9rem", display: 'flex', gap: '5px', alignItems: 'center', mt: 2 }}>
-                <img src='./contactus.svg' style={{ width: '20px', height: '20px' }} />
+                <SendIcon style={{ color: 'grey', fontSize: '20px' }} />
 
                 <Box>
                   

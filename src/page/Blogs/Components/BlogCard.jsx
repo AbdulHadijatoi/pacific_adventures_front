@@ -71,7 +71,7 @@ const BlogCard = () => {
                     {blog?.map((val, ind) => (
                         <Grid item lg={4} md={6} sm={12} xs={12} key={ind}>
                             <Box>
-                                <Box sx={{ backgroundColor: '#FFF' }}>
+                                <Box onClick={() => navigate(`/blogs/${val.slug}`)} sx={{ backgroundColor: '#FFF', border: '1px solid rgba(0,0,0,0.1)' }}>
                                     <Box>
                                         <img src={`${base}${val.banner_image_url}`} alt='' style={{ objectFit: 'cover', width: '100%', height: '30vh' }} />
                                     </Box>
@@ -79,7 +79,7 @@ const BlogCard = () => {
                                         <Button sx={{ backgroundColor: 'green', borderRadius: '20px', color: 'white', fontSize: '0.7rem' }} variant='contained'>
                                             {moment(val.created_at).format('DD MMM YYYY')}
                                         </Button>
-                                        <Typography gutterBottom variant="h5" component="div" sx={{ marginTop: '1rem', fontWeight: '600', fontSize: '1rem' }}>
+                                        <Typography  gutterBottom variant="h5" component="div" sx={{ marginTop: '1rem', fontWeight: '600', fontSize: '1rem' }}>
                                             {val.title}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary" sx={descriptionStyle} dangerouslySetInnerHTML={{ __html: val.description }}/>

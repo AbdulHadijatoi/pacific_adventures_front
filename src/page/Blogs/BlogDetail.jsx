@@ -81,15 +81,15 @@ const BlogDetail = () => {
               gap: "20px",
             }}
           >
-            <Typography
-              sx={{
+            <h1
+              style={{
                 cursor: "pointer",
                 fontSize: "1.5rem",
                 fontWeight: "600",
               }}
             >
               {data?.title}
-            </Typography>
+            </h1>
             <Typography
               sx={{
                 cursor: "pointer",

@@ -84,7 +84,7 @@ const Tab1Card = (props) => {
             <Box
               onClick={() => navigate(`/things-to-do-in-dubai/${val.slug}`)}
               sx={{
-                minHeight: '20rem',
+                minHeight: '25rem',
                 // maxHeight: '20rem',
                 backgroundColor: "white",
                 borderRadius: "12px",
