@@ -1,6 +1,7 @@
 import { useRoutes } from "react-router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+
 import { getMenus } from "./store/actions/authActions";
 import Landing from "./page/Landing";
 import Signup_Main from "./page/Authentication_Page/Signup/Signup_Main";
@@ -39,9 +40,9 @@ import PreviewCard from "./page/gift/PreviewCard";
 import UnAuthDetail from "./page/Help_Page/UnAuthDetail";
 import GenerateCheckoutInvoice from "./page/PaymentDeatils/GenerateCheckoutInvoice";
 import ErrorPage from "./components/ErrorBoundary/components/ErrorPage";
-import PaymentErrorPage from "./page/PaymentDeatils/PaymentErrorPage"; // Import the new component
-import ThankYouPage from "./page/PaymentDeatils/ThankYouPage"; // Import the new component
-import GiftPaymentInfo from "./page/gift/GiftPaymentInfo"; // Import the new component
+import PaymentErrorPage from "./page/PaymentDeatils/PaymentErrorPage";
+import ThankYouPage from "./page/PaymentDeatils/ThankYouPage";
+import GiftPaymentInfo from "./page/gift/GiftPaymentInfo";
 
 export default function Router() {
   const dispatch = useDispatch();
@@ -77,12 +78,8 @@ export default function Router() {
 
   // Route configuration
   const element = useRoutes([
-    {
-      path: "/error",
-      element: <ErrorPage />,
-    },
-
     { path: "/", element: <Landing nameProp={getMatchedRouteForPath("/").nameProp} /> },
+    { path: "/error", element: <ErrorPage /> },
     { path: getMatchedRouteForPath("/signup").route, element: <Signup_Main nameProp={getMatchedRouteForPath("/signup").nameProp} /> },
     { path: getMatchedRouteForPath("/login").route, element: <Login_Main nameProp={getMatchedRouteForPath("/login").nameProp} /> },
     { path: getMatchedRouteForPath("/manage-profile").route, element: <ManageProfileMain nameProp={getMatchedRouteForPath("/manage-profile").nameProp} /> },
