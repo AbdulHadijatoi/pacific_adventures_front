@@ -79,7 +79,7 @@ export default function Router() {
   // Route configuration
   const element = useRoutes([
     { path: "/", element: <Landing nameProp={getMatchedRouteForPath("/").nameProp} /> },
-    { path: "/error", element: <ErrorPage /> },
+    // { path: "/error", element: <ErrorPage /> },
     { path: getMatchedRouteForPath("/signup").route, element: <Signup_Main nameProp={getMatchedRouteForPath("/signup").nameProp} /> },
     { path: getMatchedRouteForPath("/login").route, element: <Login_Main nameProp={getMatchedRouteForPath("/login").nameProp} /> },
     { path: getMatchedRouteForPath("/manage-profile").route, element: <ManageProfileMain nameProp={getMatchedRouteForPath("/manage-profile").nameProp} /> },
@@ -118,6 +118,7 @@ export default function Router() {
     { path: getMatchedRouteForPath("/payment-error").route, element: <PaymentErrorPage /> }, // Add this line
     { path: getMatchedRouteForPath("/thank-you").route, element: <ThankYouPage /> }, // Add this line
     { path: getMatchedRouteForPath("/gift-payment-info/:code").route, element: <GiftPaymentInfo /> }, // Add this line
+    { path: "*", element: <ErrorPage statusCode={410} /> },
   ]);
 
   return element;

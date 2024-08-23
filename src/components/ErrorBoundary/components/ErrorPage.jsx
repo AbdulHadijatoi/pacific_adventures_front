@@ -1,63 +1,50 @@
-import { Box, Button, Card, Stack, Typography, styled } from '@mui/material'
-import { Link } from 'react-router-dom'
-import React from 'react'
 
-const StyledRoot = styled(Card)(({ theme }) => ({
-  height: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center'
-}))
-const StyledButton = styled('a')(({ theme }) => ({
-  width: '10rem',
-  borderRadius: '20px',
-  background: '#D33737',
-  fontWeight: 'bold',
-  fontSize: '15px',
-  marginTop: '3rem',
-  height: '30px',
-  textDecoration: 'none',
-  color: '#fff',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  '&:hover': {
-    background: '#962525'
-  }
-}))
+import { useEffect, React } from "react";
 
-
-const ErrorPage = () => {
+// ErrorPage Component
+function ErrorPage() {
+  useEffect(() => {
+    document.title = "410 - Page Gone";
+  }, []);
   return (
-    <div>
-      <StyledRoot elevation={0}>
-        <Stack>
-
-          <Typography sx={{ fontWeight: 'bold', fontSize: '10vw', color: '#d33737' }}>
-            Oops...!
-          </Typography>
-          <div style={{ display: 'flex' }}>
-            <Typography sx={{ fontWeight: 800, fontSize: '4vw', }} >
-              Error 404:
-            </Typography>
-            <Typography sx={{ fontSize: '4vw', ml: '1rem' }}>  Page Not found </Typography>
-          </div>
-          <Typography sx={{ fontWeight: 'bold', }}> We're sorry. the page you requested could not be found at the moment </Typography>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-
-            <StyledButton variant='contained' component={Link} href='/'>
-              Go Home
-            </StyledButton>
-          </div>
-
-        </Stack>
-        <Box sx={{ mt: '5rem' }}>
-          <img src='/assets/images/error.png' />
-        </Box>
-      </StyledRoot>
-
-    </div>
-  )
+    <main style={styles.container}>
+      <section>
+        <h1 style={styles.heading}>410 - Page Gone</h1>
+        <p style={styles.paragraph}>
+          The page you are looking for is no longer available. It may have been removed or the link you followed might be outdated.
+        </p>
+        <p style={styles.paragraph}>
+          Please <a href="/" style={styles.link}>return to the homepage</a> or use the navigation menu to find what you're looking for.
+        </p>
+      </section>
+    </main>
+  );
 }
 
-export default ErrorPage
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    textAlign: 'center',
+    padding: '20px',
+  },
+  heading: {
+    fontSize: '3rem',
+    color: '#333',
+  },
+  paragraph: {
+    fontSize: '1.25rem',
+    color: '#666',
+    margin: '20px 0',
+  },
+  link: {
+    color: '#832d14',
+    textDecoration: 'none',
+    fontWeight: 'bold',
+  },
+};
+
+export default ErrorPage;
